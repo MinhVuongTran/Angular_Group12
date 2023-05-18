@@ -25,33 +25,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Áo khoác nam',
               },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
+           
             ],
           },
           {
@@ -60,65 +34,11 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Áo khoác nam',
               },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
             ],
           },
           {
             label: 'ĐỒ NỮ',
             items: [
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
               {
                 label: 'Áo khoác nam',
               },
@@ -195,6 +115,7 @@ export class HeaderComponent implements OnInit {
             ],
           },
         ],
+        routerLink: 'products'
       },
     ];
     this.userItems = [

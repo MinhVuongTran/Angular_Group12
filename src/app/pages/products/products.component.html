@@ -1,1 +1,60 @@
-<p>products works!</p>
+<div class="max-w-7xl mx-auto py-8">
+  <div class="">
+    <app-slider></app-slider>
+  </div>
+  <div class="grid grid-cols-2 py-3">
+    <div class="flex justify-around">
+      <div class="">
+        <a href="#">
+          <p-button label="Áo khoác nam" styleClass="p-button-raised p-button-text p-button-secondary"></p-button>
+        </a>
+      </div>
+      <div class="#">
+        <a href="">
+          <p-button label="Áo khoác nữ" styleClass="p-button-raised p-button-text p-button-secondary"></p-button>
+        </a>
+      </div>
+      <div class="#">
+        <a href="">
+          <p-button label="Áo khoác unisex" styleClass="p-button-raised p-button-text p-button-secondary"></p-button>
+        </a>
+      </div>
+    </div>
+    <div class="flex justify-end gap-x-8 items-center">
+      <div class="">ajfl;ajf</div>
+      <div class="">afafa</div>
+    </div>
+  </div>
+  <div class="grid gap-4 grid-cols-4" *ngIf="products && products.length">
+    <div
+      class="card flex justify-content-center"
+      *ngFor="let product of products; index as i"
+    >
+      <p-card>
+        <ng-template pTemplate="header">
+          <a routerLink="product" class="block overflow-hidden"
+            ><img
+              alt="Card"
+              class="transform transition-all duration-500 hover:scale-105"
+              src="{{ product.imgUrl }}"
+          /></a>
+        </ng-template>
+        <a class="font-bold text-sm" routerLink="product">{{ product.name }}</a>
+        <ng-template pTemplate="footer">
+          <div class="font-bold text-sm">
+            <div class="flex items-center justify-between">
+              <span>{{ product.price }}đ</span>
+
+              <button
+                pButton
+                icon="pi pi-cart-plus"
+                label="Thêm"
+                class="addBtn p-button-outlined p-button-secondary"
+              ></button>
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>
