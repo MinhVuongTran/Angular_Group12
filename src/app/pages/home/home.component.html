@@ -1,0 +1,72 @@
+<div class="max-w-7xl mx-auto">
+  <app-slider></app-slider>
+  <section class="popular-product section">
+    <h1 class="text-3xl font-semibold">Sản phẩm nổi bật</h1>
+
+    <div class="wrapper mt-8">
+      <div class="grid gap-4 grid-cols-4" *ngIf="products && products.length">
+        <div
+          class="card flex justify-content-center"
+          *ngFor="let product of products; index as i"
+        >
+          <p-card>
+            <ng-template pTemplate="header">
+              <a routerLink="product" class="block overflow-hidden"
+                ><img
+                  alt="Card"
+                  class="transform transition-all duration-500 hover:scale-105"
+                  src="{{ product.imgUrl }}"
+              /></a>
+            </ng-template>
+            <a class="font-bold text-sm" routerLink="product">{{
+              product.name
+            }}</a>
+            <ng-template pTemplate="footer">
+              <div class="font-bold text-sm">
+                <div class="flex items-center justify-between">
+                  <span>{{ product.price }}đ</span>
+
+                  <button
+                    pButton
+                    icon="pi pi-cart-plus"
+                    label="Thêm"
+                    class="addBtn p-button-outlined p-button-secondary"
+                  ></button>
+                </div>
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="feature-news section">
+    <h1 class="text-3xl font-semibold">Tin Tức nổi bật</h1>
+    <div class="wrapper mt-8">
+      <div class="grid gap-4 grid-cols-3">
+        <p-card
+          *ngFor="let post of posts"
+          class="transform hover:-translate-y-1 transition duration-500"
+        >
+          <div class="grid grid-cols-3 gap-3">
+            <div>
+              <img src="{{ post.imgUrl }}" alt="" />
+            </div>
+            <div class="col-span-2 flex flex-col justify-between">
+              <span class="text-[#00b154] font-semibold">Tin khuyến mãi</span>
+              <a routerLink="post" class="font-bold hover:text-[#33c077]">{{
+                post.title
+              }}</a>
+              <a routerLink="post">
+                <div class="flex items-center justify-end">
+                  <p class="mr-3">Đọc thêm</p>
+                  <i class="pi pi-arrow-right"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </section>
+</div>

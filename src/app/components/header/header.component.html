@@ -1,0 +1,23 @@
+<header>
+  <p-menubar [model]="items" [styleClass]="'menu-bar'" class="sticky top-0">
+    <ng-template pTemplate="start">
+      <img src="assets/logo.png" width="80" class="mr-2" />
+    </ng-template>
+    <div class="flex items-center justify-evenly min-w-[400px]">
+      <span class="p-input-icon-left">
+        <input type="text" pInputText />
+        <i class="pi pi-search"></i>
+      </span>
+      <div>
+        <i
+          class="pi pi-shopping-cart"
+          pBadge
+          value="2"
+          style="font-size: 1.5rem"
+          severity="danger"
+        ></i>
+      </div>
+      <i class="pi pi-user" style="font-size: 1.5rem"></i>
+    </div>
+  </p-menubar>
+</header>
