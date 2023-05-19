@@ -16,25 +16,25 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.products = [
       {
-        id: '1',
+        id: 1,
         name: 'Product 1',
         price: 10.99,
         imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
       },
       {
-        id: '2',
+        id: 2,
         name: 'Product 2',
         price: 19.99,
         imgUrl: 'assets/20230407_Zvdaiq3jv7.jpeg',
       },
       {
-        id: '3',
+        id: 3,
         name: 'Product 3',
         price: 7.99,
         imgUrl: 'assets/20230410_RbE74WPNWx.webp',
       },
       {
-        id: '4',
+        id: 4,
         name: 'Product 4',
         price: 23.4,
         imgUrl: 'assets/20230410_x3FbZdnooR.jpeg',
