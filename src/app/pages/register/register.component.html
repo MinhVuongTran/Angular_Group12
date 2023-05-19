@@ -1,3 +1,39 @@
-<p>
-  register works!
-</p>
+
+
+<div class="bg-gray-100 flex items-center justify-center h-screen">
+  <div class="bg-white shadow-md rounded px-8 py-6 w-1/3">
+    <h2 class="text-2xl font-bold mb-6">Register</h2>
+    <form>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="register-username">
+          Username
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="register-username" type="text" placeholder="Enter a username">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="register-email">
+          Email
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="register-email" type="email" placeholder="Enter your email">
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="register-password">
+          Password
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="register-password" type="password" placeholder="Enter a password">
+      </div>
+      <div class="flex items-center justify-between">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="button">
+          Register
+        </button>
+        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" routerLink="/login">
+          Already have an account? Sign In
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
