@@ -6,27 +6,51 @@ import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/notFound/notFound.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
+import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { ProductComponent } from './pages/admin/product/product.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: SiteLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+      },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+      },
+    ],
   },
   {
-    path: 'products',
-    component: ProductsComponent,
-  },
-  {
-    path: 'products/:id',
-    component: ProductDetailComponent,
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'product',
+        component: ProductComponent,
+      },
+    ],
   },
   {
     path: '**',

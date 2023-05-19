@@ -23,6 +23,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/notFound/notFound.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
+import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
     SliderComponent,
     ProductsComponent,
     ProductDetailComponent,
+    SiteLayoutComponent,
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,
