@@ -6,17 +6,26 @@
     <div class="flex justify-around">
       <div class="">
         <a href="#">
-          <p-button label="Áo khoác nam" styleClass="p-button-raised p-button-text p-button-secondary"></p-button>
+          <p-button
+            label="Áo khoác nam"
+            styleClass="p-button-raised p-button-text p-button-secondary"
+          ></p-button>
         </a>
       </div>
       <div class="#">
         <a href="">
-          <p-button label="Áo khoác nữ" styleClass="p-button-raised p-button-text p-button-secondary"></p-button>
+          <p-button
+            label="Áo khoác nữ"
+            styleClass="p-button-raised p-button-text p-button-secondary"
+          ></p-button>
         </a>
       </div>
       <div class="#">
         <a href="">
-          <p-button label="Áo khoác unisex" styleClass="p-button-raised p-button-text p-button-secondary"></p-button>
+          <p-button
+            label="Áo khoác unisex"
+            styleClass="p-button-raised p-button-text p-button-secondary"
+          ></p-button>
         </a>
       </div>
     </div>
@@ -32,25 +41,27 @@
     >
       <p-card>
         <ng-template pTemplate="header">
-          <a routerLink="product" class="block overflow-hidden"
+          <a routerLink="{{ product.id }}" class="block overflow-hidden"
             ><img
               alt="Card"
               class="transform transition-all duration-500 hover:scale-105"
               src="{{ product.imgUrl }}"
           /></a>
         </ng-template>
-        <a class="font-bold text-sm" routerLink="product">{{ product.name }}</a>
+        <p class="font-bold text-sm">{{ product.name }}</p>
         <ng-template pTemplate="footer">
           <div class="font-bold text-sm">
             <div class="flex items-center justify-between">
               <span>{{ product.price }}đ</span>
 
-              <button
-                pButton
-                icon="pi pi-cart-plus"
-                label="Thêm"
-                class="addBtn p-button-outlined p-button-secondary"
-              ></button>
+              <a routerLink="{{ product.id }}">
+                <button
+                  pButton
+                  icon="pi pi-cart-plus"
+                  label="Thêm"
+                  class="addBtn p-button-outlined p-button-secondary"
+                ></button>
+              </a>
             </div>
           </div>
         </ng-template>
