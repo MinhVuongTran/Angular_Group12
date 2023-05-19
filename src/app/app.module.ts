@@ -21,6 +21,8 @@ import { SliderComponent } from './components/slider/slider.component';
 import { SliderService } from './services/slider/slider.service';
 import { RegisterComponent } from './pages/register/register.component';
 import { NotFoundComponent } from './pages/notFound/notFound.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,8 @@ import { NotFoundComponent } from './pages/notFound/notFound.component';
     RegisterComponent,
     NotFoundComponent,
     SliderComponent,
+    ProductsComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
