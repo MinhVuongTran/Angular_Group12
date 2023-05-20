@@ -6,7 +6,9 @@
     class="sticky top-0 z-10"
   >
     <ng-template pTemplate="start">
-      <img src="assets/logo.png" width="80" class="mr-2" />
+      <a routerLink="/"
+        ><img src="assets/logo.png" width="80" class="mr-2"
+      /></a>
     </ng-template>
     <div class="flex items-center justify-evenly min-w-[400px]">
       <span class="p-input-icon-left">
@@ -22,7 +24,9 @@
           severity="danger"
         ></i>
       </div>
-      <i class="pi pi-user" style="font-size: 1.5rem"></i>
+      <a routerLink="/login"
+        ><i class="pi pi-user" style="font-size: 1.5rem"></i
+      ></a>
     </div>
   </p-menubar>
 </header>

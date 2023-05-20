@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
     this.items = [
       {
         label: 'NEW ARRIVALS',
+        routerLink: '/products',
       },
       {
         label: 'SẢN PHẨM',
@@ -116,6 +117,14 @@ export class HeaderComponent implements OnInit {
           },
         ],
         
+      },
+      {
+        label: 'ABOUT',
+        routerLink: '/about',
+      },
+      {
+        label: 'CONTACT',
+        routerLink: '/contact',
       },
     ];
     this.userItems = [
