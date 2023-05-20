@@ -36,6 +36,10 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
       },
+      {
+        path: '**',
+        component: NotFoundComponent,
+      },
     ],
   },
   {
@@ -50,11 +54,11 @@ const routes: Routes = [
         path: 'product',
         component: ProductComponent,
       },
+      {
+        path: '**',
+        component: NotFoundComponent,
+      },
     ],
-  },
-  {
-    path: '**',
-    component: NotFoundComponent,
   },
 ];
 
