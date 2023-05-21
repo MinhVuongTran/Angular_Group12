@@ -68,4 +68,39 @@
       </p-card>
     </div>
   </div>
+  <div class="">
+    <app-banner></app-banner>
+  </div>
+  <!-- Carousel Item -->
+  <div class="my-8">
+    <div class="card">
+      <p-carousel [value]="products" [numVisible]="4" [numScroll]="3">
+        <ng-template let-product pTemplate="item">
+          <div class="border shadow-md surface-border rounded-xl m-2 bg-white">
+            <div class="">
+              <img
+                src="{{ product.imgUrl }}"
+                [alt]="product.name"
+                class="rounded-tr-md rounded-tl-md"
+              />
+            </div>
+            <div class="">
+              <div class="">
+                <h3 class="ml-3 my-3 font-medium text-lg">{{ product.name }}</h3>
+              </div>
+              <div class="flex justify-between my-2 items-center">
+                <div class="ml-3 text-lg">{{ product.price + " đ" }}</div>
+                <div class="px-3">
+                  <a routerLink="{{product.id}}">
+                    <button class="border w-10 h-10 rounded-md shadow-md"><i class="pi pi-cart-plus"></i></button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </div>
+  <!-- End Carousel Item -->
 </div>

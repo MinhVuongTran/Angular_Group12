@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {SplitterModule} from 'primeng/splitter'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { ButtonModule } from 'primeng/button';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { GalleriaModule } from 'primeng/galleria';
 import { CardModule } from 'primeng/card';
+import {CarouselModule} from 'primeng/carousel'
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -25,6 +27,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
+import { BannerComponent } from './components/banner/banner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +42,7 @@ import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayo
     ProductDetailComponent,
     SiteLayoutComponent,
     AdminLayoutComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,8 @@ import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayo
     SlideMenuModule,
     GalleriaModule,
     CardModule,
+    CarouselModule,
+    SplitterModule
   ],
   providers: [SliderService],
   bootstrap: [AppComponent],
