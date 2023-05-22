@@ -41,7 +41,9 @@
     >
       <p-card>
         <ng-template pTemplate="header">
-          <a routerLink="{{ product.id }}" class="block overflow-hidden"
+          <a
+            routerLink="{{product.id}}"
+            class="block overflow-hidden"
             ><img
               alt="Card"
               class="transform transition-all duration-500 hover:scale-105"
@@ -53,8 +55,7 @@
           <div class="font-bold text-sm">
             <div class="flex items-center justify-between">
               <span>{{ product.price }}đ</span>
-
-              <a routerLink="{{ product.id }}">
+              <a routerLink="{{product.id}}">
                 <button
                   pButton
                   icon="pi pi-cart-plus"

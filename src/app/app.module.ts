@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {SplitterModule} from 'primeng/splitter'
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenubarModule } from 'primeng/menubar';
@@ -28,6 +27,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { DialogService } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,9 +58,10 @@ import { BannerComponent } from './components/banner/banner.component';
     GalleriaModule,
     CardModule,
     CarouselModule,
-    SplitterModule
+    SplitterModule,
   ],
-  providers: [SliderService],
+  providers: [SliderService,DialogService],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

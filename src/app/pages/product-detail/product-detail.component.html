@@ -1,16 +1,29 @@
 <div class="max-w-7xl mx-auto py-3">
-  <p-splitter
-    [panelSizes]="[40, 60]"
-    styleClass="mb-5"
-  >
-    <ng-template pTemplate>
-      <div class=""></div>
-    </ng-template>
-    <ng-template pTemplate>
-      <div class="col flex align-items-center justify-content-center">
-        Panel 2
-      </div>
-    </ng-template>
-  </p-splitter>
+  <div class="Card" *ngFor="let product of products">
+    <p-splitter
+      [panelSizes]="[40, 60]"
+      styleClass="mb-5"
+      *ngIf="product.id == productId"
+    >
+      <ng-template pTemplate>
+        <div class="p-4">
+          <p-carousel [value]="product.images" [numVisible]="1" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions">
+            <ng-template let-image pTemplate="item">
+              <img [src]="image" alt="Product Image" (click)="showImage(image)" style="cursor: pointer;" />
+            </ng-template>
+          </p-carousel>
+          
+          <p-dialog [(visible)]="displayDialog" [responsive]="true" [modal]="true" [contentStyle]="{'height':'500px'}" [style]="{width: '50vw'}">
+            <img [src]="selectedImage" style="width: 100%">
+          </p-dialog>
+          
+        </div>
+      </ng-template>
+      <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+          {{ product.name }}
+        </div>
+      </ng-template>
+    </p-splitter>
+  </div>
 </div>
-
