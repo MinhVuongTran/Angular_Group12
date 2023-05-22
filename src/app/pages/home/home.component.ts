@@ -1,6 +1,7 @@
+import { Product } from './../../interfaces/product';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
-import { Product } from 'src/app/interfaces/product';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-home',
@@ -8,38 +9,19 @@ import { Product } from 'src/app/interfaces/product';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
-
   products: Product[] = [];
   posts: Post[] = [];
 
+  constructor(private productService: ProductService) {}
+
   ngOnInit() {
-    this.products = [
-      {
-        id: 1,
-        name: 'Product 1',
-        price: 10.99,
-        imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
+    this.productService.getProducts().subscribe(
+      (data) => {
+        this.products = data.data;
+        console.log(data);
       },
-      {
-        id: 2,
-        name: 'Product 2',
-        price: 19.99,
-        imgUrl: 'assets/20230407_Zvdaiq3jv7.jpeg',
-      },
-      {
-        id: 3,
-        name: 'Product 3',
-        price: 7.99,
-        imgUrl: 'assets/20230410_RbE74WPNWx.webp',
-      },
-      {
-        id: 4,
-        name: 'Product 4',
-        price: 23.4,
-        imgUrl: 'assets/20230410_x3FbZdnooR.jpeg',
-      },
-    ];
+      (error) => console.log(error.message)
+    );
 
     this.posts = [
       {

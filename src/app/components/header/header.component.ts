@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { CategoryService } from 'src/app/services/category/category.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private categoryService: CategoryService) {}
 
   items: MenuItem[] = [];
   userItems: MenuItem[] = [];
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
             items: [
               {
                 label: 'Áo khoác nam',
-                routerLink: 'products'
+                routerLink: 'products',
               },
             ],
           },
@@ -116,7 +117,6 @@ export class HeaderComponent implements OnInit {
             ],
           },
         ],
-        
       },
       {
         label: 'ABOUT',
