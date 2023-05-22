@@ -7,10 +7,27 @@ import { CategoryService } from 'src/app/services/category/category.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private categoryService: CategoryService) {}
+  product: any[] = [];
 
   items: MenuItem[] = [];
   userItems: MenuItem[] = [];
+
+  constructor(private categoryService: CategoryService) {
+    this.categoryService.getCategory().subscribe(({ data }) => {
+      console.log(data);
+      const temp = data.map((menu: any) => {
+        const itemsTemp = menu.subCategories.map((item: any) => {
+          return { label: item.name, routerLink: menu.slug + '/' + item.slug };
+        });
+        return {
+          label: menu.name,
+          items: itemsTemp,
+        };
+      });
+      console.log(temp);
+      this.product.push(...temp);
+    });
+  }
 
   ngOnInit() {
     this.items = [
@@ -20,103 +37,7 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'SẢN PHẨM',
-        items: [
-          {
-            label: 'ÁO KHOÁC',
-            items: [
-              {
-                label: 'Áo khoác nam',
-                routerLink: 'products',
-              },
-            ],
-          },
-          {
-            label: 'ĐỒ NAM',
-            items: [
-              {
-                label: 'Áo khoác nam',
-              },
-            ],
-          },
-          {
-            label: 'ĐỒ NỮ',
-            items: [
-              {
-                label: 'Áo khoác nam',
-              },
-            ],
-          },
-          {
-            label: 'UNISEX',
-            items: [
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-            ],
-          },
-          {
-            label: 'PHỤ KIỆN',
-            items: [
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-              {
-                label: 'Áo khoác nam',
-              },
-            ],
-          },
-        ],
+        items: this.product,
       },
       {
         label: 'ABOUT',
@@ -127,6 +48,8 @@ export class HeaderComponent implements OnInit {
         routerLink: '/contact',
       },
     ];
+    console.log(this.items);
+
     this.userItems = [
       {
         label: 'File',

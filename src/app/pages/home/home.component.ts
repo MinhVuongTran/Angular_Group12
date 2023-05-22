@@ -1,7 +1,7 @@
-import { Product } from './../../interfaces/product';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
 import { ProductService } from 'src/app/services/product/product.service';
+import { Product } from './../../interfaces/product';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,6 @@ export class HomeComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (data) => {
         this.products = data.data;
-        console.log(data);
       },
       (error) => console.log(error.message)
     );
