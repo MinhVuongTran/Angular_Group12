@@ -8,8 +8,11 @@ import { DialogService } from 'primeng/dynamicdialog';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent {
-  images : any[] =[];
-  constructor(private route: ActivatedRoute,public dialogService: DialogService) {}
+  images: any[] = [];
+  constructor(
+    private route: ActivatedRoute,
+    public dialogService: DialogService
+  ) {}
   productId!: number;
   products: Product[] = [];
   selectedImage: any;
@@ -19,18 +22,18 @@ export class ProductDetailComponent {
     {
       breakpoint: '1024px',
       numVisible: 3,
-      numScroll: 3
+      numScroll: 3,
     },
     {
       breakpoint: '768px',
       numVisible: 2,
-      numScroll: 2
+      numScroll: 2,
     },
     {
       breakpoint: '560px',
       numVisible: 1,
-      numScroll: 1
-    }
+      numScroll: 1,
+    },
   ];
 
   showImage(image: string) {
@@ -53,6 +56,12 @@ export class ProductDetailComponent {
           'assets/20230407_Zvdaiq3jv7.jpeg',
           'assets/20230407_Zvdaiq3jv7.jpeg',
         ],
+        colors: [
+          'assets/colors1.webp',
+          'assets/colors2.jpg',
+          'assets/colors3.png',
+          'assets/colors4.jpg',
+        ],
       },
       {
         id: 2,
@@ -63,6 +72,12 @@ export class ProductDetailComponent {
           'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
           'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
           'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
+        ],
+        colors: [
+          'assets/colors1.webp',
+          'assets/colors2.jpg',
+          'assets/colors3.png',
+          'assets/colors4.jpg',
         ],
       },
       {
@@ -75,6 +90,12 @@ export class ProductDetailComponent {
           'assets/20230410_RbE74WPNWx.webp',
           'assets/20230410_RbE74WPNWx.webp',
         ],
+        colors: [
+          'assets/colors1.webp',
+          'assets/colors2.jpg',
+          'assets/colors3.png',
+          'assets/colors4.jpg',
+        ],
       },
       {
         id: '4',
@@ -85,6 +106,12 @@ export class ProductDetailComponent {
           'assets/20230410_x3FbZdnooR.jpeg',
           'assets/20230410_x3FbZdnooR.jpeg',
           'assets/20230410_x3FbZdnooR.jpeg',
+        ],
+        colors: [
+          'assets/colors1.webp',
+          'assets/colors2.jpg',
+          'assets/colors3.png',
+          'assets/colors4.jpg',
         ],
       },
     ];
