@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SplitterModule} from 'primeng/splitter'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PanelModule } from 'primeng/panel';
 import { MenubarModule } from 'primeng/menubar';
 import { AvatarModule } from 'primeng/avatar';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -59,6 +61,8 @@ import { DialogService } from 'primeng/dynamicdialog';
     CardModule,
     CarouselModule,
     SplitterModule,
+    PanelModule,
+    BrowserAnimationsModule
   ],
   providers: [SliderService,DialogService],
   bootstrap: [AppComponent],

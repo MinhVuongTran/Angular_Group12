@@ -1,108 +1,200 @@
-<div class="max-w-7xl mx-auto py-3">
-  <div class="Card" *ngFor="let product of products">
-    <div class="flex gap-x-6" *ngIf="product.id == productId">
-      <!--  Giao diện cột trái -->
-      <div class="w-2/5">
-        <div class="p-4">
-          <p-carousel
-            [value]="product.images"
-            [numVisible]="1"
-            [numScroll]="3"
-            [circular]="true"
-            [responsiveOptions]="responsiveOptions"
-          >
-            <ng-template let-image pTemplate="item">
-              <img
-                [src]="image"
-                alt="Product Image"
-                (click)="showImage(image)"
-                style="cursor: pointer"
-              />
-            </ng-template>
-          </p-carousel>
+<div class="max-w-7xl mx-auto py-3" *ngFor="let product of products">
+  <!-- Thông tin sản phẩm -->
+  <div class="Card">
+    <div class="flex flex-col gap-y-16" *ngIf="product.id == productId">
+      <div class="flex gap-x-6 items-center">
+        <!--  Giao diện cột trái -->
+        <div class="w-2/5">
+          <div class="p-4">
+            <p-carousel
+              [value]="product.images"
+              [numVisible]="1"
+              [numScroll]="3"
+              [circular]="true"
+              [responsiveOptions]="responsiveOptions"
+            >
+              <ng-template let-image pTemplate="item">
+                <img
+                  [src]="image"
+                  alt="Product Image"
+                  (click)="showImage(image)"
+                  style="cursor: pointer"
+                />
+              </ng-template>
+            </p-carousel>
 
-          <p-dialog
-            [(visible)]="displayDialog"
-            [responsive]="true"
-            [modal]="true"
-            [contentStyle]="{ height: '500px' }"
-            [style]="{ width: '50vw' }"
+            <p-dialog
+              [(visible)]="displayDialog"
+              [responsive]="true"
+              [modal]="true"
+              [contentStyle]="{ height: '500px' }"
+              [style]="{ width: '50vw' }"
+            >
+              <img [src]="selectedImage" style="width: 100%" />
+            </p-dialog>
+          </div>
+        </div>
+        <!-- End Giao diện cột trái -->
+        <!-- ----------------------------- -->
+        <!-- Giao diện cột phải -->
+        <div class="w-3/5">
+          <div class="py-2">
+            <button class="px-4 py-1 bg-[#f2994a66] text-[#f2994a] rounded-xl">
+              #Bán chạy
+            </button>
+            <button
+              class="px-4 py-1 bg-[#2d9cdb66] mx-2 text-[#2d9cdb] rounded-xl"
+            >
+              Đã bán: 0
+            </button>
+          </div>
+          <div class="flex flex-col gap-y-6">
+            <div class="text-3xl font-medium">{{ product.name }}</div>
+            <div class="">
+              5/5<i class="pi pi-star-fill text-yellow-500"></i>
+            </div>
+            <div class="text-xl">{{ product.price }}</div>
+          </div>
+          <div class="py-2">
+            <span class="font-medium text-xl">Màu Sắc</span>
+            <div class="flex gap-x-4">
+              <img
+                *ngFor="let color of product.colors"
+                src="{{ color }}"
+                alt=""
+                style="width: 30px"
+                class="py-3"
+              />
+            </div>
+          </div>
+          <div class="">
+            <span class="font-medium text-xl">Kích cỡ</span>
+            <div class="flex gap-x-4 py-2">
+              <button class="w-[40px] border">S</button>
+              <button class="w-[40px] border">M</button>
+              <button class="w-[40px] border">L</button>
+              <button class="w-[40px] border">Xl</button>
+            </div>
+          </div>
+          <div class="py-2 flex gap-x-6 text-center">
+            <span class="font-medium text-xl">Số lượng</span>
+            <div class="flex gap-x-6 border rounded-md shadow-md">
+              <button
+                class="bg-slate-300 px-2 overflow-hidden rounded-tl-md rounded-bl-md"
+              >
+                -
+              </button>
+              <button class="">0</button>
+              <button
+                class="bg-slate-300 px-2 overflow-hidden rounded-tr-md rounded-br-md"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div class="flex gap-x-6 py-4">
+            <button
+              class="bg-[#00b156] py-2 px-6 font-medium text-white shadow-md"
+            >
+              MUA NGAY
+            </button>
+            <button
+              class="bg-[#003644] py-2 px-4 font-medium text-white shadow-md"
+            >
+              <i class="pi pi-shopping-bag mr-2"></i>
+              THÊM VÀO GIỎ HÀNG
+            </button>
+          </div>
+          <div class="mt-2 border w-4/5 p-2 shadow-md flex justify-between">
+            <div class="font-medium flex items-center gap-x-4">
+              <i class="pi pi-calendar-plus"></i>
+              <p>90 ngày bảo hành</p>
+            </div>
+            <div class="font-medium flex items-center gap-x-4">
+              <i class="pi pi-arrow-right-arrow-left"></i>
+              <p>30 ngày đổi trả</p>
+            </div>
+            <div class="font-medium flex items-center gap-x-4">
+              <i class="pi pi-box"></i>
+              <p>Miễn phí giao hàng</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Giao diện cột phải -->
+      </div>
+      <!-- --------------- -->
+      <!-- Chi tiết sản phẩm -->
+      <div class="">
+        <div class="card flex justify-content-center">
+          <p-panel header="CHI TIẾT SẢN PHẨM">
+            <div class="py-6">
+              <p class="font-medium">
+                Chất liệu: {{ products[0].infors?.material }}
+              </p>
+              <p class="font-medium">
+                Màu sắc: {{ products[0].infors?.colors }}
+              </p>
+              <p class="font-medium">
+                Kiểu dáng: {{ products[0].infors?.style }}
+              </p>
+            </div>
+            <p>
+              {{ products[0].infors?.desc }}
+            </p>
+            <div class="py-4">
+              <img
+                src="{{ products[0].infors?.infoImage }}"
+                alt=""
+                class="mx-auto"
+              />
+            </div>
+          </p-panel>
+        </div>
+      </div>
+      <!-- End Chi tiết sản phẩm -->
+      <!-- Sản phẩm tương tự -->
+      <div class="">
+        <p-card header="SẢN PHẨM TƯƠNG TỰ">
+          <div
+            class="grid gap-4 grid-cols-4"
+            *ngIf="products && products.length"
           >
-            <img [src]="selectedImage" style="width: 100%" />
-          </p-dialog>
-        </div>
-      </div>
-      <!-- End Giao diện cột trái -->
-      <!-- ----------------------------- -->
-      <!-- Giao diện cột phải -->
-      <div class="w-3/5 p-4">
-        <div class="flex flex-col gap-y-6">
-          <div class="text-3xl font-medium">{{ product.name }}</div>
-          <div class="">5/5<i class="pi pi-star-fill text-yellow-500"></i></div>
-          <div class="text-xl">{{ product.price }}</div>
-        </div>
-        <div class="py-2">
-          <span class="font-medium text-xl">Màu Sắc</span>
-          <div class="flex gap-x-4">
-            <img
-              *ngFor="let color of product.colors"
-              src="{{ color }}"
-              alt=""
-              style="width: 30px"
-              class="py-3"
-            />
-          </div>
-        </div>
-        <div class="">
-          <span class="font-medium text-xl">Kích cỡ</span>
-          <div class="flex gap-x-4 py-2">
-            <button class="w-[40px] border">S</button>
-            <button class="w-[40px] border">M</button>
-            <button class="w-[40px] border">L</button>
-            <button class="w-[40px] border">Xl</button>
-          </div>
-        </div>
-        <div class="py-2 flex gap-x-6 text-center">
-          <span class="font-medium text-xl">Số lượng</span>
-          <div class="flex gap-x-6 border rounded-md shadow-md">
-            <button
-              class="bg-slate-300 px-2 overflow-hidden rounded-tl-md rounded-bl-md"
+            <div
+              class="card flex justify-content-center"
+              *ngFor="let product of products; index as i"
             >
-              -
-            </button>
-            <button class="">0</button>
-            <button
-              class="bg-slate-300 px-2 overflow-hidden rounded-tr-md rounded-br-md"
-            >
-              +
-            </button>
+              <p-card>
+                <ng-template pTemplate="header">
+                  <a routerLink="{{ product.id }}" class="block overflow-hidden"
+                    ><img
+                      alt="Card"
+                      class="transform transition-all duration-500 hover:scale-105"
+                      src="{{ product.imgUrl }}"
+                  /></a>
+                </ng-template>
+                <p class="font-bold text-sm">{{ product.name }}</p>
+                <ng-template pTemplate="footer">
+                  <div class="font-bold text-sm">
+                    <div class="flex items-center justify-between">
+                      <span>{{ product.price }}đ</span>
+                      <a routerLink="{{ product.id }}">
+                        <button
+                          pButton
+                          icon="pi pi-cart-plus"
+                          label="Thêm"
+                          class="addBtn p-button-outlined p-button-secondary"
+                        ></button>
+                      </a>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-card>
+            </div>
           </div>
-        </div>
-        <div class="flex gap-x-6 py-4">
-          <button class="bg-[#00b156] py-2 px-6 font-medium text-white shadow-md">
-            MUA NGAY
-          </button>
-          <button class="bg-[#003644] py-2 px-4 font-medium text-white shadow-md">
-            <i class="pi pi-shopping-bag mr-2"></i>
-            THÊM VÀO GIỎ HÀNG
-          </button>
-        </div>
-        <div class="mt-2 border w-4/5 p-2 shadow-md flex justify-between ">
-          <div class="font-medium flex items-center gap-x-4">
-            <i class="pi pi-calendar-plus"></i>
-            <p>90 ngày bảo hành</p>
-          </div>
-          <div class="font-medium flex items-center gap-x-4">
-            <i class="pi pi-arrow-right-arrow-left"></i>
-            <p>30 ngày đổi trả</p>
-          </div>
-          <div class="font-medium flex items-center gap-x-4">
-            <i class="pi pi-box"></i>
-            <p>Miễn phí giao hàng</p>
-          </div>
-        </div>
+        </p-card>
       </div>
-      <!-- End Giao diện cột phải -->
+      <!-- End Sản phẩm tương tự -->
     </div>
+    <!-- End thông tin sản phẩm -->
   </div>
 </div>
