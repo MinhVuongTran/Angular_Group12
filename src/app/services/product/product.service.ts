@@ -23,7 +23,7 @@ export class ProductService {
   }
   updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(
-      `http://localhost:8080/api/products/${product.id}`,
+      `http://localhost:8080/api/products/${product._id}`,
       product
     );
   }

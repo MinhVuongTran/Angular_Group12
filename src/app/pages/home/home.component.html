@@ -12,7 +12,7 @@
           <p-card>
             <ng-template pTemplate="header">
               <a
-                routerLink="products/{{ product.id }}"
+                routerLink="products/{{ product._id }}"
                 class="block overflow-hidden"
                 ><img
                   alt="Card"
@@ -25,7 +25,7 @@
               <div class="font-bold text-sm">
                 <div class="flex items-center justify-between">
                   <span>{{ product.price }}đ</span>
-                  <a routerLink="products/{{ product.id }}">
+                  <a routerLink="products/{{ product._id }}">
                     <button
                       pButton
                       icon="pi pi-cart-plus"
