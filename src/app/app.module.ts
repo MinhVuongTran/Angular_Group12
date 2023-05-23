@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
 import { SplitterModule } from 'primeng/splitter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PanelModule } from 'primeng/panel';
 import { MenubarModule } from 'primeng/menubar';
 import { AvatarModule } from 'primeng/avatar';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -30,6 +31,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { DialogService } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,8 +64,11 @@ import { BannerComponent } from './components/banner/banner.component';
     CardModule,
     CarouselModule,
     SplitterModule,
+    PanelModule,
+    BrowserAnimationsModule
   ],
-  providers: [SliderService],
+  providers: [SliderService,DialogService],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}
