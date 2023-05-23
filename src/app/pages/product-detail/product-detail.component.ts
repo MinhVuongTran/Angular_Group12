@@ -14,6 +14,7 @@ export class ProductDetailComponent {
     private route: ActivatedRoute,
     public dialogService: DialogService
   ) {}
+
   productId!: number;
   products: Product[] = [];
   selectedImage: any;

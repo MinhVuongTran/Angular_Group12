@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {SplitterModule} from 'primeng/splitter'
+import { HttpClientModule } from '@angular/common/http';
+import { SplitterModule } from 'primeng/splitter';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PanelModule } from 'primeng/panel';
@@ -15,7 +17,7 @@ import { ButtonModule } from 'primeng/button';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { GalleriaModule } from 'primeng/galleria';
 import { CardModule } from 'primeng/card';
-import {CarouselModule} from 'primeng/carousel'
+import { CarouselModule } from 'primeng/carousel';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -48,6 +50,7 @@ import { DialogService } from 'primeng/dynamicdialog';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     MenubarModule,
     AvatarModule,
