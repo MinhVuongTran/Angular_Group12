@@ -12,6 +12,7 @@ import {
   Router,
 } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -25,11 +26,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   pathUrl = '';
   images: any;
   productItems: MenuItem[] = [];
+  public totalItems: number = 0;
+  addToCart(product: any): void {
+    this.cartService.addToCart(product);
+    this.totalItems = this.cartService.updateCartTotal();
+  }
 
   constructor(
     private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -41,13 +48,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       // Gọi phương thức cập nhật danh sách sản phẩm dựa trên categorySlug
       this.updateProductList(this.categorySlug);
     });
-
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     const url = event.url;
-    //     this.updateSortItem(url);
-    //   }
-    // });
 
     this.productItems = [
       {
@@ -100,11 +100,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     ];
   }
   ngOnDestroy() {
-    // Hủy subscription khi component bị hủy
     this.routeSub.unsubscribe();
   }
-
-  updateSortItem(routerLink: string) {}
 
   updateProductList(categorySlug: string | null) {
     this.productService.getProducts().subscribe(
@@ -118,6 +115,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
 
         this.images = data.map((item: any) => item.images);
+        console.log(this.products);
       },
       (error) => console.log(error.message)
     );
