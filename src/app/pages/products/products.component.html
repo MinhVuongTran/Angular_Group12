@@ -2,36 +2,29 @@
   <div class="">
     <app-slider></app-slider>
   </div>
-  <div class="grid grid-cols-2 py-3">
-    <div class="flex justify-around">
-      <div class="">
-        <a href="#">
-          <p-button
-            label="Áo khoác nam"
-            styleClass="p-button-raised p-button-text p-button-secondary"
-          ></p-button>
-        </a>
-      </div>
-      <div class="#">
-        <a href="">
-          <p-button
-            label="Áo khoác nữ"
-            styleClass="p-button-raised p-button-text p-button-secondary"
-          ></p-button>
-        </a>
-      </div>
-      <div class="#">
-        <a href="">
-          <p-button
-            label="Áo khoác unisex"
-            styleClass="p-button-raised p-button-text p-button-secondary"
-          ></p-button>
-        </a>
-      </div>
+  <div class="flex justify-between py-8">
+    <div>
+      <span class="font-semibold text-xl">Tất cả</span>
+      <span class="text-[#757575] text-sm">{{
+        "/ Trang 1 - " + products.length + " sản phẩm"
+      }}</span>
     </div>
-    <div class="flex justify-end gap-x-8 items-center">
-      <div class="">ajfl;ajf</div>
-      <div class="">afafa</div>
+    <div class="flex justify-between gap-x-8 items-center">
+      <p-menu #menu [popup]="true" [model]="productItems"></p-menu>
+      <p-button
+        styleClass="p-button-secondary p-button-text"
+        (click)="menu.toggle($event)"
+        icon="pi pi-angle-down"
+        label="Sắp xếp theo"
+      ></p-button>
+      <!-- <button
+        pButton
+        type="button"
+        styleClass="p-button-secondary p-button-text"
+        (click)="menu.toggle($event)"
+        icon="pi pi-bars"
+        label="Sắp xếp theo"
+      ></button> -->
     </div>
   </div>
   <div class="grid gap-4 grid-cols-4" *ngIf="products && products.length">
@@ -41,23 +34,26 @@
     >
       <p-card>
         <ng-template pTemplate="header">
-
-          <a routerLink="{{ product._id }}" class="block overflow-hidden"
-
+          <a
+            routerLink="/products/{{ product._id }}"
+            class="block overflow-hidden"
             ><img
               alt="Card"
               class="transform transition-all duration-500 hover:scale-105"
-              src="{{ product.imgUrl }}"
+              [src]="images[i][0]?.base_url"
           /></a>
         </ng-template>
-        <p class="font-bold text-sm">{{ product.name }}</p>
+        <a
+          routerLink="/products/{{ product._id }}"
+          class="font-bold text-sm hover:text-[#00b156]"
+          >{{ product.name }}</a
+        >
         <ng-template pTemplate="footer">
           <div class="font-bold text-sm">
             <div class="flex items-center justify-between">
               <span>{{ product.price }}đ</span>
 
-              <a routerLink="{{ product._id }}">
-
+              <a routerLink="/products/{{ product._id }}">
                 <button
                   pButton
                   icon="pi pi-cart-plus"
@@ -71,10 +67,9 @@
       </p-card>
     </div>
   </div>
-  <div class="">
+  <!-- <div class="">
     <app-banner></app-banner>
   </div>
-  <!-- Carousel Item -->
   <div class="my-8">
     <div class="card">
       <p-carousel [value]="products" [numVisible]="4" [numScroll]="3">
@@ -109,5 +104,5 @@
       </p-carousel>
     </div>
   </div>
-  <!-- End Carousel Item -->
+   -->
 </div>

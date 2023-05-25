@@ -1,15 +1,15 @@
-<div class="max-w-7xl mx-auto py-3" *ngFor="let product of products">
+<div class="max-w-7xl mx-auto py-3">
   <!-- Thông tin sản phẩm -->
   <div class="Card">
-    <div class="flex flex-col gap-y-16" *ngIf="product.id == productId">
+    <div class="flex flex-col gap-y-16">
       <div class="flex gap-x-6 items-center">
         <!--  Giao diện cột trái -->
         <div class="w-2/5">
           <div class="p-4">
             <p-carousel
-              [value]="product.images"
+              [value]="product.images[0]?.another_url"
               [numVisible]="1"
-              [numScroll]="3"
+              [numScroll]="1"
               [circular]="true"
               [responsiveOptions]="responsiveOptions"
             >
@@ -129,25 +129,16 @@
           <p-panel header="CHI TIẾT SẢN PHẨM">
             <div class="py-6">
               <p class="font-medium">
-                Chất liệu: {{ products[0].infors?.material }}
+                Chất liệu: {{ product?.infos[0]?.material }}
               </p>
+              <p class="font-medium">Màu sắc: {{ product?.infos[0]?.color }}</p>
               <p class="font-medium">
-                Màu sắc: {{ products[0].infors?.colors }}
-              </p>
-              <p class="font-medium">
-                Kiểu dáng: {{ products[0].infors?.style }}
+                Kiểu dáng: {{ product?.infos[0].style }}
               </p>
             </div>
             <p>
-              {{ products[0].infors?.desc }}
+              {{ product?.infos[0]?.desc }}
             </p>
-            <div class="py-4">
-              <img
-                src="{{ products[0].infors?.infoImage }}"
-                alt=""
-                class="mx-auto"
-              />
-            </div>
           </p-panel>
         </div>
       </div>
@@ -155,29 +146,28 @@
       <!-- Sản phẩm tương tự -->
       <div class="">
         <p-card header="SẢN PHẨM TƯƠNG TỰ">
-          <div
-            class="grid gap-4 grid-cols-4"
-            *ngIf="products && products.length"
-          >
+          <div class="grid gap-4 grid-cols-4">
             <div
               class="card flex justify-content-center"
-              *ngFor="let product of products; index as i"
+              *ngFor="let similar_product of similar_products; index as i"
             >
               <p-card>
                 <ng-template pTemplate="header">
-                  <a routerLink="{{ product.id }}" class="block overflow-hidden"
+                  <a
+                    routerLink="/products/{{ similar_product._id }}"
+                    class="block overflow-hidden"
                     ><img
                       alt="Card"
                       class="transform transition-all duration-500 hover:scale-105"
-                      src="{{ product.imgUrl }}"
+                      [src]="similar_products_thumb[i].base_url"
                   /></a>
                 </ng-template>
-                <p class="font-bold text-sm">{{ product.name }}</p>
+                <p class="font-bold text-sm">{{ similar_product.name }}</p>
                 <ng-template pTemplate="footer">
                   <div class="font-bold text-sm">
                     <div class="flex items-center justify-between">
-                      <span>{{ product.price }}đ</span>
-                      <a routerLink="{{ product.id }}">
+                      <span>{{ similar_product.price }}đ</span>
+                      <a routerLink="{{ similar_product._id }}">
                         <button
                           pButton
                           icon="pi pi-cart-plus"

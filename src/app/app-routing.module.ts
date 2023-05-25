@@ -29,6 +29,10 @@ const routes: Routes = [
         component: ProductDetailComponent,
       },
       {
+        path: 'products/:categorySlug/:subCategorySlug',
+        component: ProductsComponent,
+      },
+      {
         path: 'login',
         component: LoginComponent,
       },

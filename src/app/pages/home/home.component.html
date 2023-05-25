@@ -17,10 +17,14 @@
                 ><img
                   alt="Card"
                   class="transform transition-all duration-500 hover:scale-105"
-                  src="{{ product.imgUrl }}"
+                  [src]="images[i][0]?.base_url"
               /></a>
             </ng-template>
-            <p class="font-bold text-sm">{{ product.name }}</p>
+            <a
+              routerLink="{{ product._id }}"
+              class="font-bold text-sm hover:text-[#00b156]"
+              >{{ product.name }}</a
+            >
             <ng-template pTemplate="footer">
               <div class="font-bold text-sm">
                 <div class="flex items-center justify-between">
@@ -39,6 +43,46 @@
           </p-card>
         </div>
       </div>
+      <!-- <p-dataView #dv [value]="products" [row]="2" [paginator]="true">
+        <ng-template let-product let-i="index" pTemplate="listItem">
+          <div class="grid gap-4 grid-cols-4">
+            <div class="card flex justify-content-center">
+              <p-card>
+                <ng-template pTemplate="header">
+                  <a
+                    routerLink="products/{{ product._id }}"
+                    class="block overflow-hidden"
+                    ><img
+                      alt="Card"
+                      class="transform transition-all duration-500 hover:scale-105"
+                      [src]="images[i][0]?.base_url"
+                  /></a>
+                </ng-template>
+                <a
+                  routerLink="{{ product._id }}"
+                  class="font-bold text-sm hover:text-[#00b156]"
+                  >{{ product.name }}</a
+                >
+                <ng-template pTemplate="footer">
+                  <div class="font-bold text-sm">
+                    <div class="flex items-center justify-between">
+                      <span>{{ product.price }}đ</span>
+                      <a routerLink="products/{{ product._id }}">
+                        <button
+                          pButton
+                          icon="pi pi-cart-plus"
+                          label="Thêm"
+                          class="addBtn p-button-outlined p-button-secondary"
+                        ></button>
+                      </a>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-card>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView> -->
     </div>
   </section>
   <section class="feature-news section">

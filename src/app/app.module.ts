@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { SplitterModule } from 'primeng/splitter';
-
 import { AppRoutingModule } from './app-routing.module';
+
+import { SplitterModule } from 'primeng/splitter';
 import { AppComponent } from './app.component';
 import { PanelModule } from 'primeng/panel';
 import { MenubarModule } from 'primeng/menubar';
@@ -18,6 +18,12 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { GalleriaModule } from 'primeng/galleria';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
+import { DialogService } from 'primeng/dynamicdialog';
+import { MenuModule } from 'primeng/menu';
+import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
+
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -31,7 +37,6 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { BannerComponent } from './components/banner/banner.component';
-import { DialogService } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,10 +70,14 @@ import { DialogService } from 'primeng/dynamicdialog';
     CarouselModule,
     SplitterModule,
     PanelModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MenuModule,
+    ToastModule,
+    DropdownModule,
+    DataViewModule,
   ],
-  providers: [SliderService,DialogService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [SliderService, DialogService],
   bootstrap: [AppComponent],
-  
 })
 export class AppModule {}

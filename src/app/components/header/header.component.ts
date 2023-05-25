@@ -14,17 +14,18 @@ export class HeaderComponent implements OnInit {
 
   constructor(private categoryService: CategoryService) {
     this.categoryService.getCategory().subscribe(({ data }) => {
-      console.log(data);
       const temp = data.map((menu: any) => {
         const itemsTemp = menu.subCategories.map((item: any) => {
-          return { label: item.name, routerLink: menu.slug + '/' + item.slug };
+          return {
+            label: item.name,
+            routerLink: '/products/' + menu.slug + '/' + item.slug,
+          };
         });
         return {
           label: menu.name,
           items: itemsTemp,
         };
       });
-      console.log(temp);
       this.product.push(...temp);
     });
   }
@@ -48,7 +49,6 @@ export class HeaderComponent implements OnInit {
         routerLink: '/contact',
       },
     ];
-    console.log(this.items);
 
     this.userItems = [
       {
