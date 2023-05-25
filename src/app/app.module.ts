@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SplitterModule } from 'primeng/splitter';
+import { TableModule } from 'primeng/table';
 import { AppComponent } from './app.component';
 import { PanelModule } from 'primeng/panel';
 import { MenubarModule } from 'primeng/menubar';
@@ -23,6 +24,7 @@ import { MenuModule } from 'primeng/menu';
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -37,6 +39,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { BannerComponent } from './components/banner/banner.component';
+import { ProductComponent } from './components/product/product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +51,7 @@ import { BannerComponent } from './components/banner/banner.component';
     NotFoundComponent,
     SliderComponent,
     ProductsComponent,
+    ProductComponent,
     ProductDetailComponent,
     SiteLayoutComponent,
     AdminLayoutComponent,
@@ -75,7 +79,10 @@ import { BannerComponent } from './components/banner/banner.component';
     ToastModule,
     DropdownModule,
     DataViewModule,
+    TableModule,
+    InputNumberModule,
   ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [SliderService, DialogService],
   bootstrap: [AppComponent],

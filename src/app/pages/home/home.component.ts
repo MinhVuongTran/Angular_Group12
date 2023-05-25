@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from './../../interfaces/product';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,17 @@ export class HomeComponent implements OnInit {
   images: any;
   posts: Post[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
+
+  public totalItems: number = 0;
+
+  addToCart(product: any): void {
+    this.cartService.addToCart(product);
+    this.totalItems = this.cartService.updateCartTotal();
+  }
 
   ngOnInit() {
     this.productService.getProducts().subscribe(
