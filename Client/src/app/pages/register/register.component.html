@@ -1,4 +1,4 @@
-<div class="section flex items-center justify-center">
+<div class="flex items-center justify-center section">
   <div class="bg-white shadow-md rounded px-8 py-6 w-1/3">
     <h2 class="text-2xl font-bold mb-6">Register</h2>
     <form>
@@ -7,13 +7,13 @@
           class="block text-gray-700 text-sm font-bold mb-2"
           for="register-username"
         >
-          Username
+          FullName
         </label>
         <input
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="register-username"
           type="text"
-          placeholder="Enter a username"
+          placeholder="Enter a full name"
         />
       </div>
       <div class="mb-4">
@@ -30,7 +30,23 @@
           placeholder="Enter your email"
         />
       </div>
-      <div class="mb-6">
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="register-phone"
+        >
+          Phone Number
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="register-phone"
+          type="tel"
+          placeholder="Enter your phone number"
+          pattern="[0-9]{10}"
+          required
+        />
+      </div>
+      <div class="mb-4">
         <label
           class="block text-gray-700 text-sm font-bold mb-2"
           for="register-password"
@@ -42,6 +58,20 @@
           id="register-password"
           type="password"
           placeholder="Enter a password"
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="register-confirm-password"
+        >
+          Confirm Password
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="register-confirm-password"
+          type="password"
+          placeholder="Confirm your password"
         />
       </div>
       <div class="flex items-center justify-between">
