@@ -39,7 +39,6 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { BannerComponent } from './components/banner/banner.component';
-import { DialogService } from 'primeng/dynamicdialog';
 import { ReProCateComponent } from './components/reProCate/reProCate.component';
 import { ProductComponent } from './components/product/product.component';
 

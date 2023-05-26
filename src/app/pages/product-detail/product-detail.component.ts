@@ -9,9 +9,7 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent {
-
   image: any;
-
 
   constructor(
     private route: ActivatedRoute,
@@ -50,7 +48,7 @@ export class ProductDetailComponent {
     this.displayDialog = true;
   }
   ngOnInit() {
-    this.route.params.subscribe((params) => 
+    this.route.params.subscribe((params) => {
       this.id = params['id'];
     });
     this.productService.getProductsById(this.id).subscribe(
