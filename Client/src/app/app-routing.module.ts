@@ -13,6 +13,24 @@ import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'product',
+        component: ProductComponent,
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
+      },
+    ],
+  },
+  {
     path: '',
     component: SiteLayoutComponent,
     children: [
@@ -39,24 +57,6 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent,
-      },
-      {
-        path: '**',
-        component: NotFoundComponent,
-      },
-    ],
-  },
-  {
-    path: 'admin',
-    component: AdminLayoutComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
-      {
-        path: 'product',
-        component: ProductComponent,
       },
       {
         path: '**',
