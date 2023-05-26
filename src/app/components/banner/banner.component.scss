@@ -1,0 +1,11 @@
+.imgBanner{
+  height: 350px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.imgBanner:hover{
+  transform: scale(1.2);
+  // animation: 0.5s;
+  transition-delay: 0.5s;
+}

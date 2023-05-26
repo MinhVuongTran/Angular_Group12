@@ -15,10 +15,9 @@ export class HomeComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-/*
     this.products = [
       {
-        id: 1,
+        _id: 1,
         name: 'Product 1',
         price: 10.99,
         imgUrl: 'assets/20230407_Zvdaiq3jv7.jpeg',
@@ -29,7 +28,7 @@ export class HomeComponent implements OnInit {
         ],
       },
       {
-        id: 2,
+        _id: 2,
         name: 'Product 2',
         price: 19.99,
         imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
@@ -40,7 +39,7 @@ export class HomeComponent implements OnInit {
         ],
       },
       {
-        id: 3,
+        _id: 3,
         name: 'Product 3',
         price: 7.99,
         imgUrl: 'assets/20230410_RbE74WPNWx.webp',
@@ -51,7 +50,7 @@ export class HomeComponent implements OnInit {
         ],
       },
       {
-        id: '4',
+        _id: '4',
         name: 'Product 4',
         price: 23.4,
         imgUrl: 'assets/20230410_x3FbZdnooR.jpeg',
@@ -62,14 +61,13 @@ export class HomeComponent implements OnInit {
         ],
       },
     ];
-    */
-    this.productService.getProducts().subscribe(
-      (data) => {
-        this.products = data.data;
-      },
-      (error) => console.log(error.message)
-    );
 
+    // this.productService.getProducts().subscribe(
+    //   (data) => {
+    //     this.products = data.data;
+    //   },
+    //   (error) => console.log(error.message)
+    // );
 
     this.posts = [
       {

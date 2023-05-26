@@ -13,10 +13,9 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   posts: Post[] = [];
   ngOnInit() {
-
     this.products = [
       {
-        id: 1,
+        _id: 1,
         name: 'Product 1',
         price: 10.99,
         imgUrl: 'assets/20230407_Zvdaiq3jv7.jpeg',
@@ -27,7 +26,7 @@ export class ProductsComponent implements OnInit {
         ],
       },
       {
-        id: 2,
+        _id: 2,
         name: 'Product 2',
         price: 19.99,
         imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
@@ -38,7 +37,7 @@ export class ProductsComponent implements OnInit {
         ],
       },
       {
-        id: 3,
+        _id: 3,
         name: 'Product 3',
         price: 7.99,
         imgUrl: 'assets/20230410_RbE74WPNWx.webp',
@@ -49,7 +48,7 @@ export class ProductsComponent implements OnInit {
         ],
       },
       {
-        id: '4',
+        _id: '4',
         name: 'Product 4',
         price: 23.4,
         imgUrl: 'assets/20230410_x3FbZdnooR.jpeg',

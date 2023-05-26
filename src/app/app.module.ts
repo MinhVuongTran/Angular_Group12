@@ -32,6 +32,7 @@ import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ReProCateComponent } from './components/reProCate/reProCate.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { DialogService } from 'primeng/dynamicdialog';
     SiteLayoutComponent,
     AdminLayoutComponent,
     BannerComponent,
+    ReProCateComponent
   ],
   imports: [
     BrowserModule,

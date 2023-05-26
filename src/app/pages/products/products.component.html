@@ -29,10 +29,10 @@
         </a>
       </div>
     </div>
-    <div class="flex justify-end gap-x-8 items-center">
+    <!-- <div class="flex justify-end gap-x-8 items-center">
       <div class="">ajfl;ajf</div>
       <div class="">afafa</div>
-    </div>
+    </div> -->
   </div>
   <div class="grid gap-4 grid-cols-4" *ngIf="products && products.length">
     <div
@@ -41,9 +41,7 @@
     >
       <p-card>
         <ng-template pTemplate="header">
-
           <a routerLink="{{ product._id }}" class="block overflow-hidden"
-
             ><img
               alt="Card"
               class="transform transition-all duration-500 hover:scale-105"
@@ -57,7 +55,6 @@
               <span>{{ product.price }}đ</span>
 
               <a routerLink="{{ product._id }}">
-
                 <button
                   pButton
                   icon="pi pi-cart-plus"

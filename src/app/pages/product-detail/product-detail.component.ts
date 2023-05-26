@@ -9,13 +9,13 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class ProductDetailComponent {
   images: any[] = [];
-  
+
   constructor(
     private route: ActivatedRoute,
     public dialogService: DialogService
   ) {}
 
-  productId!: number;
+  productId!: string | number;
   products: Product[] = [];
   selectedImage: any;
 
@@ -44,12 +44,12 @@ export class ProductDetailComponent {
   }
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.productId = +params['id'];
+      this.productId = params['id'];
     });
     console.log(this.productId);
     this.products = [
       {
-        id: 1,
+        _id: 1,
         name: 'Product 1',
         price: 10.99,
         imgUrl: 'assets/20230407_Zvdaiq3jv7.jpeg',
@@ -64,19 +64,17 @@ export class ProductDetailComponent {
           'assets/colors3.png',
           'assets/colors4.jpg',
         ],
-        infors: 
-          {
-            id: 1,
-            colors: 'Trắng',
-            material: 'Cotton',
-            style: 'oversize',
-            desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
-            infoImage: 'assets/somi_nam_size.jpg',
-          },
-        
+        infors: {
+          id: 1,
+          colors: 'Trắng',
+          material: 'Cotton',
+          style: 'oversize',
+          desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
+          infoImage: 'assets/somi_nam_size.jpg',
+        },
       },
       {
-        id: 2,
+        _id: 2,
         name: 'Product 2',
         price: 19.99,
         imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
@@ -91,18 +89,17 @@ export class ProductDetailComponent {
           'assets/colors3.png',
           'assets/colors4.jpg',
         ],
-        infors: 
-          {
-            id: 2,
-            colors: 'Trắng',
-            material: 'Cotton',
-            style: 'oversize',
-            desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
-            infoImage: 'assets/somi_nam_size.jpg',
-          },
+        infors: {
+          id: 2,
+          colors: 'Trắng',
+          material: 'Cotton',
+          style: 'oversize',
+          desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
+          infoImage: 'assets/somi_nam_size.jpg',
+        },
       },
       {
-        id: 3,
+        _id: 3,
         name: 'Product 3',
         price: 7.99,
         imgUrl: 'assets/20230410_RbE74WPNWx.webp',
@@ -117,18 +114,17 @@ export class ProductDetailComponent {
           'assets/colors3.png',
           'assets/colors4.jpg',
         ],
-        infors: 
-          {
-            id: 3,
-            colors: 'Trắng',
-            material: 'Cotton',
-            style: 'oversize',
-            desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
-            infoImage: 'assets/somi_nam_size.jpg',
-          },
+        infors: {
+          id: 3,
+          colors: 'Trắng',
+          material: 'Cotton',
+          style: 'oversize',
+          desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
+          infoImage: 'assets/somi_nam_size.jpg',
+        },
       },
       {
-        id: '4',
+        _id: '4',
         name: 'Product 4',
         price: 23.4,
         imgUrl: 'assets/20230410_x3FbZdnooR.jpeg',
@@ -143,15 +139,14 @@ export class ProductDetailComponent {
           'assets/colors3.png',
           'assets/colors4.jpg',
         ],
-        infors: 
-          {
-            id: 4,
-            colors: 'Trắng',
-            material: 'Cotton',
-            style: 'oversize',
-            desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
-            infoImage: 'assets/somi_nam_size.jpg',
-          },
+        infors: {
+          id: 4,
+          colors: 'Trắng',
+          material: 'Cotton',
+          style: 'oversize',
+          desc: 'Tình bạn là một loại tình cảm rất là đặc biệt và ai ai trong chúng ta cũng phải có ít nhất một người bạn để có thể cùng nhau san sẻ, dỗ dành cho ta khi lúc ta buồn, hòa nhập với chúng ta khi ta với và nếu có cơ hội tôi mong rằng sẽ gặp lại nhau. Chất liệu nhẹ và thoáng mát tạo cho người mặc cảm giác thoáng mát trong những ngày thời tiết nóng bức. Phom áo rộng rãi mang lại cảm giác thoải mái cho mỗi chuyển động. ',
+          infoImage: 'assets/somi_nam_size.jpg',
+        },
       },
     ];
   }
