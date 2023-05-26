@@ -1,15 +1,13 @@
-
-
-<div class="bg-gray-100 flex items-center justify-center h-screen">
+<body class="bg-gray-100 flex items-center justify-center h-screen">
   <div class="bg-white shadow-md rounded px-8 py-6 w-1/3">
     <h2 class="text-2xl font-bold mb-6">Register</h2>
     <form>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="register-username">
-          Username
+          FullName
         </label>
         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="register-username" type="text" placeholder="Enter a username">
+          id="register-username" type="text" placeholder="Enter a full name">
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="register-email">
@@ -18,22 +16,36 @@
         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="register-email" type="email" placeholder="Enter your email">
       </div>
-      <div class="mb-6">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="register-phone">
+          Phone Number
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="register-phone" type="tel" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+      </div>
+      <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="register-password">
           Password
         </label>
         <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="register-password" type="password" placeholder="Enter a password">
       </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="register-confirm-password">
+          Confirm Password
+        </label>
+        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="register-confirm-password" type="password" placeholder="Confirm your password">
+      </div>
       <div class="flex items-center justify-between">
         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button">
           Register
         </button>
-        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" routerLink="/login">
+        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
           Already have an account? Sign In
         </a>
       </div>
     </form>
   </div>
-</div>
+</body>

@@ -13,6 +13,8 @@ import { ButtonModule } from 'primeng/button';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { GalleriaModule } from 'primeng/galleria';
 import { CardModule } from 'primeng/card';
+import { PasswordModule } from 'primeng/password';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -45,6 +47,9 @@ import { NotFoundComponent } from './pages/notFound/notFound.component';
     SlideMenuModule,
     GalleriaModule,
     CardModule,
+    PasswordModule,
+    InputNumberModule,
+    
   ],
   providers: [SliderService],
   bootstrap: [AppComponent],
