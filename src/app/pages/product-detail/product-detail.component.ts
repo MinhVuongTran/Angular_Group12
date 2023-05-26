@@ -9,17 +9,21 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent {
+
   image: any;
+
 
   constructor(
     private route: ActivatedRoute,
     public dialogService: DialogService,
     private productService: ProductService
   ) {}
+
   product: any = {};
   similar_products: Product[] = [];
   similar_products_thumb: any;
   id: any;
+
   selectedImage: any;
 
   displayDialog: boolean = false;
@@ -46,7 +50,7 @@ export class ProductDetailComponent {
     this.displayDialog = true;
   }
   ngOnInit() {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe((params) => 
       this.id = params['id'];
     });
     this.productService.getProductsById(this.id).subscribe(

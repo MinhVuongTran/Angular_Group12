@@ -9,6 +9,7 @@
         "/ Trang 1 - " + products.length + " sản phẩm"
       }}</span>
     </div>
+
     <div class="flex justify-between gap-x-8 items-center">
       <p-menu #menu [popup]="true" [model]="productItems"></p-menu>
       <p-button
@@ -52,7 +53,6 @@
           <div class="font-bold text-sm">
             <div class="flex items-center justify-between">
               <span>{{ product.price }}đ</span>
-
               <button
                 pButton
                 icon="pi pi-cart-plus"

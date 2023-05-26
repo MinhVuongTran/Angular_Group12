@@ -73,6 +73,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         // routerLink: routerLink,
         routerLink: this.pathUrl,
         queryParams: { sort: 'price_asc' },
+
       },
     ];
 

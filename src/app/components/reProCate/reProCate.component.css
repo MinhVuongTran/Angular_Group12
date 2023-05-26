@@ -1,0 +1,7 @@
+.hv-repro:hover{
+  background-color: #003644;
+}
+.hv-repro:hover hv-chil{
+  color: white;
+  animation: 0,25s linear;
+}

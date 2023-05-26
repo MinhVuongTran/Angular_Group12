@@ -1,9 +1,14 @@
 <div class="max-w-7xl mx-auto">
-  <app-slider></app-slider>
+  <app-slider class=""></app-slider>
+  <!-- recomment product category -->
+  <section class="">
+    <app-reProCate></app-reProCate>
+  </section>
+  <!-- end recomment product category -->
+  <!-- sản phẩm nổi bật -->
   <section class="popular-product section">
-    <h1 class="text-3xl font-semibold">Sản phẩm nổi bật</h1>
-
-    <div class="wrapper mt-8">
+    <h1 class="text-3xl font-semibold my-6">Sản phẩm nổi bật</h1>
+    <div class="wrapper">
       <div class="grid gap-4 grid-cols-4" *ngIf="products && products.length">
         <div
           class="card flex justify-content-center"
@@ -44,6 +49,13 @@
       </div>
     </div>
   </section>
+  <!-- end sản phẩm nổi bật -->
+  <!-- banner -->
+  <section class="">
+    <app-banner></app-banner>
+  </section>
+  <!-- end banner -->
+  <!-- Tin tức nổi bật -->
   <section class="feature-news section">
     <h1 class="text-3xl font-semibold">Tin Tức nổi bật</h1>
     <div class="wrapper mt-8">
@@ -73,4 +85,5 @@
       </div>
     </div>
   </section>
+  <!-- end Tin tức nổi bật -->
 </div>
