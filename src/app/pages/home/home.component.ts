@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from './../../interfaces/product';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -10,64 +11,32 @@ import { Product } from './../../interfaces/product';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
+  images: any;
   posts: Post[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
+
+  public totalItems: number = 0;
+
+  addToCart(product: any): void {
+    this.cartService.addToCart(product);
+    this.totalItems = this.cartService.updateCartTotal();
+  }
 
   ngOnInit() {
-    this.products = [
-      {
-        _id: 1,
-        name: 'Product 1',
-        price: 10.99,
-        imgUrl: 'assets/20230407_Zvdaiq3jv7.jpeg',
-        images: [
-          'assets/20230407_Zvdaiq3jv7.jpeg',
-          'assets/20230407_Zvdaiq3jv7.jpeg',
-          'assets/20230407_Zvdaiq3jv7.jpeg',
-        ],
-      },
-      {
-        _id: 2,
-        name: 'Product 2',
-        price: 19.99,
-        imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-        images: [
-          'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-          'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-          'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-        ],
-      },
-      {
-        _id: 3,
-        name: 'Product 3',
-        price: 7.99,
-        imgUrl: 'assets/20230410_RbE74WPNWx.webp',
-        images: [
-          'assets/20230410_RbE74WPNWx.webp',
-          'assets/20230410_RbE74WPNWx.webp',
-          'assets/20230410_RbE74WPNWx.webp',
-        ],
-      },
-      {
-        _id: '4',
-        name: 'Product 4',
-        price: 23.4,
-        imgUrl: 'assets/20230410_x3FbZdnooR.jpeg',
-        images: [
-          'assets/20230410_x3FbZdnooR.jpeg',
-          'assets/20230410_x3FbZdnooR.jpeg',
-          'assets/20230410_x3FbZdnooR.jpeg',
-        ],
-      },
-    ];
 
-    // this.productService.getProducts().subscribe(
-    //   (data) => {
-    //     this.products = data.data;
-    //   },
-    //   (error) => console.log(error.message)
-    // );
+    this.productService.getProducts().subscribe(
+      ({ data }) => {
+        this.products = data;
+        console.log(this.products);
+
+        this.images = data.map((item: any) => item.images);
+      },
+      (error) => console.log(error.message)
+    );
 
     this.posts = [
       {

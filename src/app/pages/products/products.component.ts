@@ -1,73 +1,81 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { Post } from 'src/app/interfaces/post';
 import { Product } from 'src/app/interfaces/product';
-import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product/product.service';
+
+import { Location } from '@angular/common';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  ParamMap,
+  Router,
+} from '@angular/router';
+import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/services/cart/cart.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
-  constructor(private productService: ProductService) {}
+export class ProductsComponent implements OnInit, OnDestroy {
+  private routeSub!: Subscription;
+  private categorySlug!: string | null;
   products: Product[] = [];
   posts: Post[] = [];
+  pathUrl = '';
+  images: any;
+  productItems: MenuItem[] = [];
+  public totalItems: number = 0;
+  addToCart(product: any): void {
+    this.cartService.addToCart(product);
+    this.totalItems = this.cartService.updateCartTotal();
+  }
+
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cartService: CartService
+  ) {}
+
   ngOnInit() {
-    this.products = [
+    this.routeSub = this.route.paramMap.subscribe((params: ParamMap) => {
+      // Lấy giá trị slug từ URL
+      this.categorySlug = params.get('subCategorySlug');
+      console.log(this.categorySlug);
+
+      // Gọi phương thức cập nhật danh sách sản phẩm dựa trên categorySlug
+      this.updateProductList(this.categorySlug);
+    });
+
+    this.productItems = [
       {
-        _id: 1,
-        name: 'Product 1',
-        price: 10.99,
-        imgUrl: 'assets/20230407_Zvdaiq3jv7.jpeg',
-        images: [
-          'assets/20230407_Zvdaiq3jv7.jpeg',
-          'assets/20230407_Zvdaiq3jv7.jpeg',
-          'assets/20230407_Zvdaiq3jv7.jpeg',
-        ],
+        label: 'Bán chạy nhất',
+        // routerLink: routerLink,
+        routerLink: this.pathUrl,
+        queryParams: { sort: 'hot' },
       },
       {
-        _id: 2,
-        name: 'Product 2',
-        price: 19.99,
-        imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-        images: [
-          'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-          'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-          'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
-        ],
+        label: 'Mới nhất',
+        // routerLink: routerLink,
+        routerLink: this.pathUrl,
+        queryParams: { sort: 'desc' },
       },
       {
-        _id: 3,
-        name: 'Product 3',
-        price: 7.99,
-        imgUrl: 'assets/20230410_RbE74WPNWx.webp',
-        images: [
-          'assets/20230410_RbE74WPNWx.webp',
-          'assets/20230410_RbE74WPNWx.webp',
-          'assets/20230410_RbE74WPNWx.webp',
-        ],
+        label: 'Giá: Cao - Thấp',
+        // routerLink: routerLink,
+        routerLink: this.pathUrl,
+        queryParams: { sort: 'price_desc' },
       },
       {
-        _id: '4',
-        name: 'Product 4',
-        price: 23.4,
-        imgUrl: 'assets/20230410_x3FbZdnooR.jpeg',
-        images: [
-          'assets/20230410_x3FbZdnooR.jpeg',
-          'assets/20230410_x3FbZdnooR.jpeg',
-          'assets/20230410_x3FbZdnooR.jpeg',
-        ],
+        label: 'Giá: Thấp - Cao',
+        // routerLink: routerLink,
+        routerLink: this.pathUrl,
+        queryParams: { sort: 'price_asc' },
+
       },
     ];
-
-    /* 
-    this.productService.getProducts().subscribe(
-      (data) => {
-        this.products = data.data;
-      },
-      (error) => console.log(error.message)
-    );
-  */
 
     this.posts = [
       {
@@ -91,5 +99,26 @@ export class ProductsComponent implements OnInit {
         imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
       },
     ];
+  }
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
+  }
+
+  updateProductList(categorySlug: string | null) {
+    this.productService.getProducts().subscribe(
+      ({ data }) => {
+        if (categorySlug !== null) {
+          this.products = data.filter(
+            (item: any) => item.subCategoryId.slug === categorySlug
+          );
+        } else {
+          this.products = data;
+        }
+
+        this.images = data.map((item: any) => item.images);
+        console.log(this.products);
+      },
+      (error) => console.log(error.message)
+    );
   }
 }

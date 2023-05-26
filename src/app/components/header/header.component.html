@@ -15,13 +15,78 @@
         <i class="pi pi-search"></i>
       </span>
       <div>
-        <i
-          class="pi pi-shopping-cart"
-          pBadge
-          value="2"
-          style="font-size: 1.5rem"
-          severity="danger"
-        ></i>
+        <div class="card">
+          <div class="flex justify-content-center cursor-pointer">
+            <i
+              class="pi pi-shopping-cart"
+              pBadge
+              value="{{ totalItems }}"
+              (click)="showDialog()"
+              style="font-size: 1.5rem"
+              severity="danger"
+            ></i>
+          </div>
+          <p-dialog
+            header="Giỏ hàng"
+            [resizable]="false"
+            [modal]="true"
+            [maximizable]="true"
+            appendTo="body"
+            [(visible)]="dialogVisible"
+            [style]="{ width: '75vw' }"
+            [contentStyle]="{ height: '400px' }"
+          >
+            <p-table
+              [value]="customers"
+              [scrollable]="true"
+              scrollHeight="flex"
+              [tableStyle]="{ 'min-width': '50rem' }"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-customer>
+                <tr>
+                  <td class="font-semibold">{{ customer.name }}</td>
+                  <td>
+                    <img
+                      [src]="customer.images[0].base_url"
+                      alt="image"
+                      class="w-16 h-16"
+                    />
+                  </td>
+                  <td>{{ customer.quantity }}</td>
+                  <td>{{ customer.price }}đ</td>
+                  <td>
+                    <p-button
+                      icon="pi pi-times"
+                      (onClick)="removeProduct(customer._id)"
+                      styleClass="p-button-rounded p-button-danger"
+                    ></p-button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+            <ng-template pTemplate="footer">
+              <div class="flex justify-between items-center py-4">
+                <div class="font-semibold">
+                  <span class="text-lg">Tổng cộng: </span>
+                  <span class="text-xl text-red-400">{{ totalAmount }}đ</span>
+                </div>
+                <p-button
+                  label="Đặt hàng"
+                  styleClass="p-button-raised p-button-success"
+                ></p-button>
+              </div>
+            </ng-template>
+          </p-dialog>
+        </div>
       </div>
       <a routerLink="/login"
         ><i class="pi pi-user" style="font-size: 1.5rem"></i

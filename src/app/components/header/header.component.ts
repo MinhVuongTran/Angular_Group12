@@ -1,6 +1,9 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { ProductService } from 'src/app/services/product/product.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,24 +15,52 @@ export class HeaderComponent implements OnInit {
   items: MenuItem[] = [];
   userItems: MenuItem[] = [];
 
-  constructor(private categoryService: CategoryService) {
+  customers: any[] = [];
+
+  dialogVisible: boolean = false;
+
+  totalItems: number = 0;
+  totalAmount: number = 0;
+
+  constructor(
+    private categoryService: CategoryService,
+    private cartService: CartService
+  ) {
     this.categoryService.getCategory().subscribe(({ data }) => {
-      console.log(data);
       const temp = data.map((menu: any) => {
         const itemsTemp = menu.subCategories.map((item: any) => {
-          return { label: item.name, routerLink: menu.slug + '/' + item.slug };
+          return {
+            label: item.name,
+            routerLink: '/products/' + menu.slug + '/' + item.slug,
+          };
         });
         return {
           label: menu.name,
           items: itemsTemp,
         };
       });
-      console.log(temp);
       this.product.push(...temp);
     });
   }
 
+  showDialog() {
+    this.dialogVisible = true;
+  }
+
+  removeProduct(productId: string): void {
+    this.cartService.removeItemById(productId);
+    this.customers = this.cartService.getCartItems();
+    this.totalItems = this.cartService.updateCartTotal();
+
+    this.totalAmount = this.cartService.getTotalAmount();
+  }
+
   ngOnInit() {
+    this.customers = this.cartService.getCartItems();
+    this.totalItems = this.cartService.updateCartTotal();
+
+    this.totalAmount = this.cartService.getTotalAmount();
+
     this.items = [
       {
         label: 'NEW ARRIVALS',
@@ -48,7 +79,6 @@ export class HeaderComponent implements OnInit {
         routerLink: '/contact',
       },
     ];
-    console.log(this.items);
 
     this.userItems = [
       {
