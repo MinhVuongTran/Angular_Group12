@@ -21,13 +21,13 @@ export class ProductService {
       product
     );
   }
-  updateProduct(product: Product): Observable<Product> {
+  updateProduct(product: any, id: string | number): Observable<Product> {
     return this.http.put<Product>(
-      `http://localhost:8080/api/products/${product._id}`,
+      `http://localhost:8080/api/products/${id}`,
       product
     );
   }
-  deleteProduct(id: number): Observable<Product> {
+  deleteProduct(id: number | string): Observable<Product> {
     return this.http.delete<Product>(
       `http://localhost:8080/api/products/${id}`
     );

@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SplitterModule } from 'primeng/splitter';
@@ -25,6 +26,7 @@ import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -41,6 +43,8 @@ import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayo
 import { BannerComponent } from './components/banner/banner.component';
 import { ReProCateComponent } from './components/reProCate/reProCate.component';
 import { ProductComponent } from './components/product/product.component';
+import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { ProductAdminComponent } from './pages/admin/product-admin/product-admin.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,9 @@ import { ProductComponent } from './components/product/product.component';
     SiteLayoutComponent,
     AdminLayoutComponent,
     BannerComponent,
-    ReProCateComponent
+    ReProCateComponent,
+    DashboardComponent,
+    ProductAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +90,9 @@ import { ProductComponent } from './components/product/product.component';
     DataViewModule,
     TableModule,
     InputNumberModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ConfirmDialogModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

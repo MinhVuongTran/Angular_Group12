@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { ProductComponent } from './pages/admin/product/product.component';
+import { ProductAdminComponent } from './pages/admin/product-admin/product-admin.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/notFound/notFound.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'product',
-        component: ProductComponent,
+        component: ProductAdminComponent,
       },
       {
         path: '**',

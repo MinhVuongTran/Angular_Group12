@@ -35,6 +35,9 @@ const productModel = new Schema(
         price: {
             type: Number,
         },
+        quantity: {
+            type: Number,
+        },
         images: [imageModel],
         infos: [infoModel],
         categoryId: {
