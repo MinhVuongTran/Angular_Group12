@@ -23,6 +23,7 @@ const get = async (req, res) => {
                     slug: 1,
                     'subCategories.name': 1,
                     'subCategories.slug': 1,
+                    'subCategories._id': 1,
                 },
             },
         ]);
