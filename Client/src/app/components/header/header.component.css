@@ -1,0 +1,10 @@
+.menu-bar {
+  background-color: #000 !important;
+  width: 100%;
+}
+
+.custom-input {
+  width: 30px;
+  height: 20px;
+  font-size: 14px;
+}

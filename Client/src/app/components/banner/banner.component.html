@@ -1,0 +1,8 @@
+<div class="">
+  <p-carousel [value]="BannerSlide" [numVisible]="1" [numScroll]="2" [autoplayInterval]="5000" [showIndicators]="false" [showNavigators]="false" >
+    <ng-template let-image pTemplate="item">
+      <img [src]="image.url" [alt]="image.alt" class="imgBanner" >
+    </ng-template>
+  </p-carousel>
+  <img src="" alt="">
+</div>

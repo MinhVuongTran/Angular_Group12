@@ -1,0 +1,7 @@
+<div class="py-8">
+  <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [autoplayInterval]="5000" [showNavigators]="false">
+    <ng-template let-image pTemplate="item">
+      <img [src]="image.url" [alt]="image.alt" style="width: 100%;">
+    </ng-template>
+  </p-carousel>
+</div>

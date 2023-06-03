@@ -1,0 +1,40 @@
+<div class="wrapper mt-8">
+  <div class="grid gap-4 grid-cols-4" *ngIf="products && products.length">
+    <div
+      class="card flex justify-content-center"
+      *ngFor="let product of products; index as i"
+    >
+      <p-card>
+        <ng-template pTemplate="header">
+          <a
+            routerLink="products/{{ product._id }}"
+            class="block overflow-hidden"
+            ><img
+              alt="Card"
+              class="transform transition-all duration-500 hover:scale-105"
+              [src]="images[i][0]?.base_url"
+          /></a>
+        </ng-template>
+        <a
+          routerLink="{{ product._id }}"
+          class="font-bold text-sm hover:text-[#00b156]"
+          >{{ product.name }}</a
+        >
+        <ng-template pTemplate="footer">
+          <div class="font-bold text-sm">
+            <div class="flex items-center justify-between">
+              <span>{{ product.price }}đ</span>
+              <button
+                pButton
+                icon="pi pi-cart-plus"
+                label="Thêm"
+                (click)="addToCart(product)"
+                class="addBtn p-button-outlined p-button-secondary"
+              ></button>
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>
