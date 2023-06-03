@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center section">
   <div class="bg-white shadow-md rounded px-8 py-6 w-1/3">
     <h2 class="text-2xl font-bold mb-6">Register</h2>
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="mb-4">
         <label
           class="block text-gray-700 text-sm font-bold mb-2"
@@ -14,7 +14,24 @@
           id="register-username"
           type="text"
           placeholder="Enter a full name"
+          formControlName="username"
         />
+        <!-- Validator -->
+        <div
+          class=""
+          *ngIf="
+            registerForm.get('username')?.invalid &&
+            registerForm.get('username')?.touched
+          "
+        >
+          <div
+            class="text-xs text-red-500"
+            *ngIf="registerForm.get('username')?.errors?.['required']"
+          >
+            Trường username là bắt buộc
+          </div>
+        </div>
+        <!-- End Validator -->
       </div>
       <div class="mb-4">
         <label
@@ -28,7 +45,31 @@
           id="register-email"
           type="email"
           placeholder="Enter your email"
+          formControlName="email"
         />
+        <!-- Validator -->
+        <div
+          class=""
+          *ngIf="
+            registerForm.get('email')?.invalid &&
+            registerForm.get('email')?.touched
+          "
+        >
+          <div
+            class="text-xs text-red-500"
+            *ngIf="registerForm.get('email')?.errors?.['required']"
+          >
+            Trường email là bắt buộc
+          </div>
+
+          <div
+            class="text-xs text-red-500 py-2"
+            *ngIf="registerForm.get('email')?.errors?.['email']"
+          >
+            Email không đúng định dạng
+          </div>
+        </div>
+        <!-- End Validator -->
       </div>
       <div class="mb-4">
         <label
@@ -44,7 +85,31 @@
           placeholder="Enter your phone number"
           pattern="[0-9]{10}"
           required
+          formControlName="phonenumber"
         />
+        <!-- Validator -->
+        <div
+          class=""
+          *ngIf="
+            registerForm.get('phonenumber')?.invalid &&
+            registerForm.get('phonenumber')?.touched
+          "
+        >
+          <div
+            class="text-xs text-red-500"
+            *ngIf="registerForm.get('phonenumber')?.errors?.['required']"
+          >
+            Trường phonenumber là bắt buộc
+          </div>
+
+          <div
+            class="text-xs text-red-500 py-2"
+            *ngIf="registerForm.get('phonenumber')?.errors?.['minLength']"
+          >
+            Sdt tối thiểu 10 số
+          </div>
+        </div>
+        <!-- End Validator -->
       </div>
       <div class="mb-4">
         <label
@@ -58,7 +123,31 @@
           id="register-password"
           type="password"
           placeholder="Enter a password"
+          formControlName="password"
         />
+        <!-- Validator -->
+        <div
+          class=""
+          *ngIf="
+            registerForm.get('password')?.invalid &&
+            registerForm.get('password')?.touched
+          "
+        >
+          <div
+            class="text-xs text-red-500"
+            *ngIf="registerForm.get('password')?.errors?.['required']"
+          >
+            Trường password là bắt buộc
+          </div>
+
+          <div
+            class="text-xs text-red-500 py-2"
+            *ngIf="registerForm.get('password')?.errors?.['minLength']"
+          >
+            Mật khẩu tối thiểu từ 8 kí tự
+          </div>
+        </div>
+        <!-- End Validator -->
       </div>
       <div class="mb-4">
         <label
@@ -72,15 +161,40 @@
           id="register-confirm-password"
           type="password"
           placeholder="Confirm your password"
+          formControlName="confirmPassword"
         />
+        <!-- Validator -->
+        <div
+          class=""
+          *ngIf="
+            registerForm.get('confirmPassword')?.invalid &&
+            registerForm.get('confirmPassword')?.touched
+          "
+        >
+          <div
+            class="text-xs text-red-500"
+            *ngIf="registerForm.get('confirmPassword')?.errors?.['required']"
+          >
+            Trường confirmPassword là bắt buộc
+          </div>
+
+          <div
+            class="text-xs text-red-500 py-2"
+            *ngIf="registerForm.get('confirmPassword')?.errors?.['passwordMismatch']"
+          >
+            Mật khẩu không khớp
+          </div>
+        </div>
+        <!-- End Validator -->
       </div>
       <div class="flex items-center justify-between">
         <button
-          class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="button"
-        >
-          Register
-        </button>
+          pButton
+          pRipple
+          label="Register"
+          class="p-button-success"
+          [disabled]="registerForm.invalid"
+        ></button>
         <a
           class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
           routerLink="/login"
