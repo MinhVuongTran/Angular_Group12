@@ -2,6 +2,9 @@
   <div class="bg-white shadow-md rounded px-8 py-6 w-1/3">
     <h2 class="text-2xl font-bold mb-6">Register</h2>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <p-messages *ngIf="showSuccessMessage" severity="success" [closable]="true">
+        <p-message detail="Registration successful."></p-message>
+      </p-messages>
       <div class="mb-4">
         <label
           class="block text-gray-700 text-sm font-bold mb-2"
@@ -14,19 +17,19 @@
           id="register-username"
           type="text"
           placeholder="Enter a full name"
-          formControlName="username"
+          formControlName="fullName"
         />
         <!-- Validator -->
         <div
           class=""
           *ngIf="
-            registerForm.get('username')?.invalid &&
-            registerForm.get('username')?.touched
+            registerForm.get('fullName')?.invalid &&
+            registerForm.get('fullName')?.touched
           "
         >
           <div
             class="text-xs text-red-500"
-            *ngIf="registerForm.get('username')?.errors?.['required']"
+            *ngIf="registerForm.get('fullName')?.errors?.['required']"
           >
             Trường username là bắt buộc
           </div>
@@ -85,19 +88,19 @@
           placeholder="Enter your phone number"
           pattern="[0-9]{10}"
           required
-          formControlName="phonenumber"
+          formControlName="phoneNumber"
         />
         <!-- Validator -->
         <div
           class=""
           *ngIf="
-            registerForm.get('phonenumber')?.invalid &&
-            registerForm.get('phonenumber')?.touched
+            registerForm.get('phoneNumber')?.invalid &&
+            registerForm.get('phoneNumber')?.touched
           "
         >
           <div
             class="text-xs text-red-500"
-            *ngIf="registerForm.get('phonenumber')?.errors?.['required']"
+            *ngIf="registerForm.get('phoneNumber')?.errors?.['required']"
           >
             Trường phonenumber là bắt buộc
           </div>

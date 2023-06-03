@@ -3,5 +3,4 @@ export interface Register {
   phoneNumber: number,
   email: string,
   password: string,
-  role: number,
 }

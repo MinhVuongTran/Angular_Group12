@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Register } from 'src/app/interfaces/register';
+// import { Register } from 'src/app/interfaces/auth';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-register',
@@ -9,18 +9,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
   errorMessages: any;
   errorObject: any = {};
-
+  showSuccessMessage: boolean = false;
   value: string = '';
 
   ngOnInit() {
+    
     this.registerForm = this.formBuilder.group(
       {
-        username: ['', Validators.required],
+        fullName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        phonenumber: ['', [Validators.required, Validators.maxLength(10)]],
+        phoneNumber: ['', [Validators.required, Validators.maxLength(10)]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
       },
@@ -56,6 +57,16 @@ export class RegisterComponent implements OnInit {
     }
     console.log('user: ', user);
     // console.log(this.registerForm.get('username')?.setErrors);
-    
+    this.http
+      .post<any>(`http://localhost:8080/auth/register`, user)
+      .subscribe(
+        () => {
+          this.showSuccessMessage = true;
+          this.registerForm.reset();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }
