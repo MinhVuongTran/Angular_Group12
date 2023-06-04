@@ -1,39 +1,24 @@
 import express from 'express';
-import path from 'path';
-import { __dirname } from '../index.js';
-import sharp from 'sharp';
 import multer from 'multer';
-const uploadRouter = express.Router();
-import { uploadImage } from '../controllers/upload.js';
-import { getRandomFileName } from '../ultilities.js';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import { deleteImage, uploadImage } from '../controllers/upload.js';
+import cloudinary from '../config/cloudinaryConfig.js';
+const router = express.Router();
 
-// Multer
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'angular-group12',
+        format: 'png',
+    },
+});
+
 const upload = multer({
-    limits: { fileSize: 1024 * 1024 * 10 }, // giới hạn kích thước tệp là 10MB
+    storage: storage,
+    limits: { fileSize: 10 * 1024 * 1024 },
 });
-// Route để xử lý yêu cầu tải lên tệp
-// uploadRouter.post('/image', upload.array('images', 10), async (req, res) => {
-//     const imageUrl = [];
-//     // Xử lý các tệp đã tải lên
-//     const promises = req.files.map(async (file) => {
-//         const imageName = getRandomFileName() + '.png';
-//         const imagePath = path.join(__dirname, `/public/${imageName}`);
-//         console.log(file.buffer);
-//         const image = sharp(file.buffer);
-//         await image.toFile(imagePath);
-//         imageUrl.push(imageName);
-//     });
-//     await Promise.all(promises);
 
-//     console.log(imageUrl);
-//     res.end(imageUrl);
-// });
+router.post('/images', upload.array('images', 10), uploadImage);
+router.delete('/images/:publicId', deleteImage);
 
-uploadRouter.post('/image', upload.single('image'), async function (req, res) {
-    const imageName = getRandomFileName() + '.png';
-    const imagePath = path.join(__dirname, `/public/${imageName}`);
-    await sharp(req.file.buffer).toFile(imagePath);
-    res.json(imageName);
-    // res.end(imageName);
-});
-export default uploadRouter;
+export default router;
