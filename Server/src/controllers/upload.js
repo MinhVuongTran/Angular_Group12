@@ -1,14 +1,33 @@
-import sharp from 'sharp';
-import path from 'path';
-import { __dirname } from '../index.js';
-
-import { getRandomFileName } from '../ultilities.js';
+import cloudinary from '../config/cloudinaryConfig.js';
 
 const uploadImage = async (req, res) => {
-    const imageName = getRandomFileName() + '.png';
-    const imagePath = path.join(__dirname, `/public/${imageName}`);
-    await sharp(req.files).toFile(imagePath);
-    res.end(imageName);
+    const images = req.files.map((file) => file.path);
+
+    const uploadedImages = [];
+    for (const image of images) {
+        try {
+            const result = await cloudinary.uploader.upload(image);
+            uploadedImages.push({
+                url: result.secure_url,
+                publicId: result.public_id,
+            });
+        } catch (error) {
+            res.send({
+                message: error,
+            });
+        }
+    }
+    return res.json({ urls: uploadedImages });
 };
 
-export { uploadImage };
+const deleteImage = async (req, res) => {
+    const publicId = req.params.publicId;
+    try {
+        const result = await cloudinary.uploader.destroy(publicId);
+        res.status(200).json({ message: 'Xóa ảnh thành công', result });
+    } catch (error) {
+        res.status(500).json({ error: 'Error deleting image' });
+    }
+};
+
+export { uploadImage, deleteImage };
