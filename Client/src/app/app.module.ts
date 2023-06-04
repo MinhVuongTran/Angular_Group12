@@ -27,8 +27,11 @@ import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ToastModule } from 'primeng/toast';
-import { AppComponent } from './app.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { OverlayModule } from 'primeng/overlay';
 
+import { AppComponent } from './app.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { FooterAdminComponent } from './components/footer-admin/footer-admin.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -103,6 +106,9 @@ import { SliderService } from './services/slider/slider.service';
     ReactiveFormsModule,
     ConfirmDialogModule,
     CommonModule,
+    FileUploadModule,
+    ProgressSpinnerModule,
+    OverlayModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
