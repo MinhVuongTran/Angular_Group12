@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
   ) {}
   errorMessages: any;
   errorObject: any = {};
-  showSuccessMessage: boolean = false;
   value: string = '';
 
   ngOnInit() {
@@ -69,7 +68,6 @@ export class RegisterComponent implements OnInit {
           summary: 'Success',
           detail: 'Đăng kí thành công',
         });
-        this.showSuccessMessage = true;
         this.registerForm.reset();
       },
       (error) => {
