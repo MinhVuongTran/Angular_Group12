@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { Register } from 'src/app/interfaces/auth';
 import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,14 +11,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private messageService: MessageService
+  ) {}
   errorMessages: any;
   errorObject: any = {};
   showSuccessMessage: boolean = false;
   value: string = '';
 
   ngOnInit() {
-    
     this.registerForm = this.formBuilder.group(
       {
         fullName: ['', Validators.required],
@@ -57,16 +62,24 @@ export class RegisterComponent implements OnInit {
     }
     console.log('user: ', user);
     // console.log(this.registerForm.get('username')?.setErrors);
-    this.http
-      .post<any>(`http://localhost:8080/auth/register`, user)
-      .subscribe(
-        () => {
-          this.showSuccessMessage = true;
-          this.registerForm.reset();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this.http.post<any>(`http://localhost:8080/auth/register`, user).subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Đăng kí thành công',
+        });
+        this.showSuccessMessage = true;
+        this.registerForm.reset();
+      },
+      (error) => {
+        console.log(error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Đăng kí thất bại',
+        });
+      }
+    );
   }
 }

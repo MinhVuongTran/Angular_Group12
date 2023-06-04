@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
-
+import { MessageService } from 'primeng/api';
 import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
 import { AppComponent } from './app.component';
@@ -93,11 +93,12 @@ import { ProductAdminComponent } from './pages/admin/product-admin/product-admin
     InputNumberModule,
     FormsModule,
     ReactiveFormsModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [SliderService, DialogService],
+  providers: [SliderService, DialogService,MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
