@@ -10,11 +10,13 @@ import { NotFoundComponent } from './pages/notFound/notFound.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'dashboard',
@@ -29,6 +31,7 @@ const routes: Routes = [
         component: NotFoundComponent,
       },
     ],
+    
   },
   {
     path: '',
@@ -53,6 +56,7 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        // canActivate: [AuthGuard],
       },
       {
         path: 'register',
