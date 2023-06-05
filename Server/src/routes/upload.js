@@ -18,7 +18,7 @@ const upload = multer({
     limits: { fileSize: 10 * 1024 * 1024 },
 });
 
-router.post('/images', upload.array('images', 10), uploadImage);
+router.post('/images', upload.array('images', 15), uploadImage);
 router.delete('/images/:publicId', deleteImage);
 
 export default router;

@@ -6,11 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { MessageService } from 'primeng/api';
-import { SplitterModule } from 'primeng/splitter';
-import { TableModule } from 'primeng/table';
-import { AppComponent } from './app.component';
-import { PanelModule } from 'primeng/panel';
-import { MenubarModule } from 'primeng/menubar';
 import { CommonModule } from '@angular/common';
 
 import { AvatarModule } from 'primeng/avatar';
@@ -119,7 +114,7 @@ import { SliderService } from './services/slider/slider.service';
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [SliderService, DialogService,MessageService],
+  providers: [SliderService, DialogService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
