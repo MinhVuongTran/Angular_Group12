@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.signinForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
   getUser() {
@@ -36,13 +36,9 @@ export class LoginComponent implements OnInit {
     this.http.post<any>(`http://localhost:8080/auth/login`, signin).subscribe(
       (respones) => {
         console.log('Dang nhap thanh cong', respones);
-        // Lưu thông tin user vào local
-        localStorage.setItem(
-          this.localStorageKey,
-          JSON.stringify(respones.data)
-        );
+
         // Kiểm tra xem đã có người dùng đăng nhập chưa
-        const currentUser = this.getUser()
+        const currentUser = this.getUser();
         if (currentUser) {
           this.messageService.add({
             severity: 'warn',
@@ -50,6 +46,12 @@ export class LoginComponent implements OnInit {
             detail: 'Có người dùng khác đã đăng nhập',
           });
           return;
+        } else {
+          // Lưu thông tin user vào local
+          localStorage.setItem(
+            this.localStorageKey,
+            JSON.stringify(respones.data)
+          );
         }
 
         this.messageService.add({
