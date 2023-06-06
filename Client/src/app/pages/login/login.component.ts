@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginComponent implements OnInit {
   signinForm!: FormGroup;
+  private localStorageKey = 'user';
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -19,8 +20,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.signinForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+  getUser() {
+    const userString = localStorage.getItem(this.localStorageKey);
+    return JSON.parse(userString!);
   }
   signin() {
     if (this.signinForm.invalid) {
@@ -30,7 +35,25 @@ export class LoginComponent implements OnInit {
     // console.log(signin);
     this.http.post<any>(`http://localhost:8080/auth/login`, signin).subscribe(
       (respones) => {
-        // console.log('Dang nhap thanh cong', respones);
+        console.log('Dang nhap thanh cong', respones);
+
+        // Kiểm tra xem đã có người dùng đăng nhập chưa
+        const currentUser = this.getUser();
+        if (currentUser) {
+          this.messageService.add({
+            severity: 'warn',
+            summary: 'Warning',
+            detail: 'Có người dùng khác đã đăng nhập',
+          });
+          return;
+        } else {
+          // Lưu thông tin user vào local
+          localStorage.setItem(
+            this.localStorageKey,
+            JSON.stringify(respones.data)
+          );
+        }
+
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
