@@ -29,4 +29,10 @@ const subCategoryModel = new Schema(
     { versionKey: false },
 );
 
+subCategoryModel.plugin(slugUpdater, {
+    alwaysUpdate: true,
+    slugFieldName: 'slug',
+    updateSlugOptions: { lower: true },
+});
+
 export default mongoose.model('subCategories', subCategoryModel);

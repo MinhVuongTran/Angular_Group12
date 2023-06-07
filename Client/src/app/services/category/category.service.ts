@@ -15,21 +15,33 @@ export class CategoryService {
   getCategoryById(id: number): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/categories/${id}`);
   }
-  addCategory(product: Category): Observable<Category> {
-    return this.http.post<Category>(
-      `http://localhost:8080/api/categories`,
-      product
+  handleAddAndUpdateCategory(
+    category: any,
+    id?: string | number
+  ): Observable<any> {
+    if (id) {
+      console.log(1);
+
+      return this.http.put<any>(
+        `http://localhost:8080/api/categories/${id}`,
+        category
+      );
+    } else {
+      console.log(2);
+
+      return this.http.post<any>(
+        `http://localhost:8080/api/categories`,
+        category
+      );
+    }
+  }
+  updateSubCategory(subCategory: any, id: string | number): Observable<any> {
+    return this.http.put<any>(
+      `http://localhost:8080/api/subCategories/${id}`,
+      subCategory
     );
   }
-  updateProduct(category: Category): Observable<Category> {
-    return this.http.put<Category>(
-      `http://localhost:8080/api/categories/${category._id}`,
-      category
-    );
-  }
-  deleteProduct(id: number): Observable<Category> {
-    return this.http.delete<Category>(
-      `http://localhost:8080/api/Category/${id}`
-    );
+  deleteCategory(id: number): Observable<Category> {
+    return this.http.delete<any>(`http://localhost:8080/api/categories/${id}`);
   }
 }

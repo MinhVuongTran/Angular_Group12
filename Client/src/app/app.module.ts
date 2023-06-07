@@ -32,6 +32,7 @@ import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { OverlayModule } from 'primeng/overlay';
+import { TreeTableModule } from 'primeng/treetable';
 
 import { AppComponent } from './app.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -55,6 +56,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ProductsComponent } from './pages/products/products.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SliderService } from './services/slider/slider.service';
+import { CategoryAdminComponent } from './pages/admin/category-admin/category-admin.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { SliderService } from './services/slider/slider.service';
     FooterAdminComponent,
     SidebarAdminComponent,
     MenuAdminComponent,
+    CategoryAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,6 +114,7 @@ import { SliderService } from './services/slider/slider.service';
     FileUploadModule,
     ProgressSpinnerModule,
     OverlayModule,
+    TreeTableModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
