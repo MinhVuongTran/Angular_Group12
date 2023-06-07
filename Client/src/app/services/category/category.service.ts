@@ -20,11 +20,15 @@ export class CategoryService {
     id?: string | number
   ): Observable<any> {
     if (id) {
+      console.log(1);
+
       return this.http.put<any>(
         `http://localhost:8080/api/categories/${id}`,
         category
       );
     } else {
+      console.log(2);
+
       return this.http.post<any>(
         `http://localhost:8080/api/categories`,
         category

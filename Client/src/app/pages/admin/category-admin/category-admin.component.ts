@@ -14,6 +14,8 @@ export class CategoryAdminComponent implements OnInit {
 
   dialog!: boolean;
 
+  isCreate: boolean = false;
+
   category: any = {};
 
   constructor(
@@ -55,6 +57,8 @@ export class CategoryAdminComponent implements OnInit {
 
   openNew() {
     this.dialog = true;
+    this.category = {};
+    this.isCreate = true;
   }
 
   hideDialog() {
@@ -69,12 +73,13 @@ export class CategoryAdminComponent implements OnInit {
     }
 
     this.dialog = true;
+    this.isCreate = false;
   }
 
   saveCategory(category: any) {
     const { id, level, slug, ...data } = category;
 
-    if (level === 0) {
+    if (level === 0 || this.isCreate) {
       this.categoryService.handleAddAndUpdateCategory(data, id).subscribe(
         (response) => {
           this.hideDialog();
@@ -86,7 +91,9 @@ export class CategoryAdminComponent implements OnInit {
           });
           this.getCategory();
         },
-        (error) => {}
+        (error) => {
+          console.log(error);
+        }
       );
     } else {
       this.categoryService.updateSubCategory(data, id).subscribe(
@@ -101,7 +108,9 @@ export class CategoryAdminComponent implements OnInit {
           });
           this.getCategory();
         },
-        (error) => {}
+        (error) => {
+          console.log(error);
+        }
       );
     }
   }
