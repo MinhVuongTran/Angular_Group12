@@ -25,4 +25,10 @@ const categoryModel = new Schema(
     { versionKey: false },
 );
 
+categoryModel.plugin(slugUpdater, {
+    alwaysUpdate: true,
+    slugFieldName: 'slug',
+    updateSlugOptions: { lower: true },
+});
+
 export default mongoose.model('categories', categoryModel);

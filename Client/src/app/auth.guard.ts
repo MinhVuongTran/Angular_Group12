@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   private localStorageKey = 'user';
@@ -13,8 +13,7 @@ export class AuthGuard implements CanActivate {
   }
   canActivate(): boolean {
     const isLoggedIn = this.getUser();
-    console.log(isLoggedIn);
-    
+
     if (isLoggedIn) {
       return true;
     } else {

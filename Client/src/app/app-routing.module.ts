@@ -11,6 +11,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ProductsComponent } from './pages/products/products.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AuthGuard } from './auth.guard';
+import { CategoryAdminComponent } from './pages/admin/category-admin/category-admin.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'product',
         component: ProductAdminComponent,
+      },
+      {
+        path: 'category',
+        component: CategoryAdminComponent,
       },
       {
         path: '**',
