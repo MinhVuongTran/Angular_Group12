@@ -15,4 +15,7 @@ export class UploadImageServiceService {
 
     return this.http.post<any>('http://localhost:8080/upload/images', formData);
   }
+  deleteImage(publicId: string): Observable<any> {
+    return this.http.delete(`http://localhost:8080/upload/images/${publicId}`);
+  }
 }

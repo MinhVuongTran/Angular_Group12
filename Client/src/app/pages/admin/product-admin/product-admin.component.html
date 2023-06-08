@@ -73,42 +73,45 @@
     header="Product Details"
     [modal]="true"
     styleClass="p-fluid"
+    (onHide)="hideDialog()"
   >
     <ng-template pTemplate="content">
-      <div
-        *ngIf="
-          product && product.images && product.images[0].base_url;
-          else uploadImage
-        "
+      <p-fileUpload
+        #fileUpload
+        id="images"
+        [multiple]="true"
+        accept="image/*"
+        [uploadStyleClass]="'hide-upload-button'"
+        class="text-center"
+        [maxFileSize]="10000000"
+        (onBeforeUpload)="onBeforeUpload($event)"
       >
-        <img
-          [src]="product.images[0].base_url"
-          id="images"
-          [alt]="product.name"
-          width="300px"
-          class="block m-auto pb-3"
-        />
-      </div>
-      <ng-template #uploadImage>
-        <p-fileUpload
-          #fileUpload
-          id="images"
-          [multiple]="true"
-          accept="image/*"
-          [uploadStyleClass]="'hide-upload-button'"
-          class="text-center"
-          [maxFileSize]="10000000"
-          (onBeforeUpload)="onBeforeUpload($event)"
-        >
-          <ng-template let-file pTemplate="file" class="grid grid-cols-2">
-            <img
-              [src]="file.objectURL"
-              alt="Preview"
-              class="w-full object-cover mb-4"
-            />
-          </ng-template>
-        </p-fileUpload>
-      </ng-template>
+        <ng-template let-file pTemplate="file" class="grid grid-cols-2">
+          <img [src]="file.objectURL" alt="Preview" class="object-cover mb-4" />
+        </ng-template>
+      </p-fileUpload>
+      <p-fieldset
+        *ngIf="filesImage.length > 0"
+        legend="Ảnh sản phẩm"
+        class="mt-2"
+        [toggleable]="true"
+      >
+        <div class="grid grid-cols-2 gap-1">
+          <div *ngFor="let file of filesImage; index as i">
+            <div class="image-preview">
+              <p-image src="{{ file }}" [preview]="false" alt="Image">
+              </p-image>
+              <p-button
+                icon="pi pi-times"
+                class="btn-delete-image"
+                styleClass="p-button-rounded p-button-danger "
+                (click)="onDeleteImage(file, product)"
+              ></p-button>
+            </div>
+          </div>
+        </div>
+      </p-fieldset>
+      <!-- </ng-template> -->
       <div class="field">
         <label for="name">Name</label>
         <input
