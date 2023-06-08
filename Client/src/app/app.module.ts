@@ -33,6 +33,8 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { OverlayModule } from 'primeng/overlay';
 import { TreeTableModule } from 'primeng/treetable';
+import { ImageModule } from 'primeng/image';
+import { FieldsetModule } from 'primeng/fieldset';
 
 import { AppComponent } from './app.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -115,6 +117,8 @@ import { CategoryAdminComponent } from './pages/admin/category-admin/category-ad
     ProgressSpinnerModule,
     OverlayModule,
     TreeTableModule,
+    ImageModule,
+    FieldsetModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

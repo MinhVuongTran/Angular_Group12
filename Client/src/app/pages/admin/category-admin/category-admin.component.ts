@@ -98,7 +98,6 @@ export class CategoryAdminComponent implements OnInit {
     } else {
       this.categoryService.updateSubCategory(data, id).subscribe(
         (response) => {
-          console.log(response);
           this.hideDialog();
           this.messageService.add({
             severity: 'success',

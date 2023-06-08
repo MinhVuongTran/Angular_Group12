@@ -59,8 +59,7 @@ export class RegisterComponent implements OnInit {
         ?.setErrors({ passwordMismatch: true });
       return;
     }
-    console.log('user: ', user);
-    // console.log(this.registerForm.get('username')?.setErrors);
+   
     this.http.post<any>(`http://localhost:8080/auth/register`, user).subscribe(
       () => {
         this.messageService.add({

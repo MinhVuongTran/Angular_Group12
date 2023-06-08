@@ -27,12 +27,15 @@ export class ProductAdminComponent implements OnInit {
   categories: any[] = [];
   productDialog!: boolean;
   product: any;
+  productData: any;
+  images: any;
   submitted!: boolean;
+  filesImage: any[] = [];
 
   groupedCategories: SelectItemGroup[] = [];
   selectedCategory: string = '';
   loadingVisible: boolean = false;
-
+  isUpdate: boolean = true;
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
@@ -70,9 +73,11 @@ export class ProductAdminComponent implements OnInit {
   editProduct(product: Product) {
     this.product = { ...product };
     this.productDialog = true;
+    this.filesImage = [...this.product.images[0].another_url];
+
     for (const category of this.groupedCategories) {
       for (const item of category.items) {
-        if (item.value === this.product._id) {
+        if (item.value === this.product.subCategoryId._id) {
           this.selectedCategory = item.value;
           return;
         }
@@ -112,11 +117,14 @@ export class ProductAdminComponent implements OnInit {
     this.product = {};
     this.submitted = false;
     this.productDialog = true;
+    this.isUpdate = false;
   }
 
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
+    this.filesImage = [];
+    this.isUpdate = true;
   }
 
   async onBeforeUpload(event?: any) {
@@ -135,81 +143,105 @@ export class ProductAdminComponent implements OnInit {
     }
   }
 
+  handleAddAndUpdateProduct(productData: any, _id?: any) {
+    return this.productService
+      .handleAddAndUpdateProduct(productData, _id)
+      .subscribe(
+        (response: any) => {
+          this.submitted = false;
+          this.loadingVisible = false;
+          this.hideDialog();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: response.message,
+            life: 3000,
+          });
+          this.getProduct();
+        },
+        (error) => {
+          this.submitted = false;
+          this.loadingVisible = false;
+          console.log(error);
+
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: error.error.message,
+            life: 3000,
+          });
+        }
+      );
+  }
+
+  handleData(product: any) {
+    let temp = {
+      categoryId: '',
+      subCategoryId: '',
+    };
+    this.groupedCategories.forEach((group) => {
+      const item = group.items.filter(
+        (item) => item.value === this.selectedCategory
+      );
+      if (item.length > 0) {
+        temp.categoryId = group.value;
+        temp.subCategoryId = this.selectedCategory;
+        return;
+      }
+    });
+
+    // Handle infos
+    const infos = [
+      {
+        color: this.inputColor.nativeElement.value,
+        material: this.inputMaterial.nativeElement.value,
+        style: this.inputStyle.nativeElement.value,
+        desc: this.inputDesc.nativeElement.value,
+      },
+    ];
+
+    const { _id, ...data } = Object.assign({}, product, temp);
+    const images = this.images;
+    this.productData = { ...data, images, infos };
+
+    return _id;
+  }
+
   saveProduct(product: Product) {
     this.submitted = true;
-    this.loadingVisible = true;
-    if (this.fileUpload.files && this.fileUpload.files.length > 0) {
-      this.onBeforeUpload()
-        .then((response) => response.urls)
-        .then((urls: any[]) => {
-          // Handle urls upload images
-          const base_url = urls[0];
-          const images = [
-            {
-              base_url: base_url.url,
-              another_url: urls.map((url) => url.url),
-            },
-          ];
 
-          // Handle cate and subCate
-          let temp = {
-            categoryId: '',
-            subCategoryId: '',
-          };
-          this.groupedCategories.forEach((group) => {
-            const item = group.items.filter(
-              (item) => item.value === this.selectedCategory
-            );
-            if (item.length > 0) {
-              temp.categoryId = group.value;
-              temp.subCategoryId = this.selectedCategory;
-              return;
-            }
-          });
+    if (this.isUpdate) {
+      if (this.fileUpload.files && this.fileUpload.files.length > 0) {
+        this.loadingVisible = true;
+        this.onBeforeUpload()
+          .then((response) => response.urls)
+          .then((urls: any[]) => {
+            // Handle urls upload images
 
-          // Handle infos
-          const infos = [
-            {
-              color: this.inputColor.nativeElement.value,
-              material: this.inputMaterial.nativeElement.value,
-              style: this.inputStyle.nativeElement.value,
-              desc: this.inputDesc.nativeElement.value,
-            },
-          ];
-
-          const { _id, ...data } = Object.assign({}, product, temp);
-          const productData = { ...data, images, infos };
-          console.log(productData);
-
-          this.productService
-            .handleAddAndUpdateProduct(productData, _id)
-            .subscribe(
-              (response: any) => {
-                this.submitted = false;
-                this.loadingVisible = false;
-                this.hideDialog();
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Successful',
-                  detail: response.message,
-                  life: 3000,
-                });
-                this.getProduct();
+            const base_url = urls[0];
+            this.images = [
+              {
+                base_url: base_url.url,
+                another_url: urls.map((url) => url.url),
               },
-              (error) => {
-                this.submitted = false;
-                this.loadingVisible = false;
-                console.log(error);
+            ];
+            this.images[0].another_url.push(...this.filesImage);
+          })
+          .then(() => {
+            const _id = this.handleData(product);
+            this.handleAddAndUpdateProduct(this.productData, _id);
+          });
+      } else {
+        this.images = [
+          {
+            base_url: this.filesImage[0],
+            another_url: this.filesImage,
+          },
+        ];
+        const _id = this.handleData(product);
 
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: error.error.message,
-                  life: 3000,
-                });
-              }
-            );
-        });
+        this.handleAddAndUpdateProduct(this.productData, _id);
+      }
     } else {
       this.submitted = false;
       this.loadingVisible = false;
@@ -220,5 +252,47 @@ export class ProductAdminComponent implements OnInit {
         life: 3000,
       });
     }
+  }
+
+  onDeleteImage(file: string, product: any) {
+    const publicId = String(
+      file.split('/').pop()?.split('.').slice(0, -1).join('.')
+    );
+    this.uploadImageService.deleteImage(publicId).subscribe(
+      (response) => {
+        this.filesImage = this.filesImage.filter(
+          (item: string) => !item.includes(publicId)
+        );
+
+        this.images = [
+          {
+            base_url: this.filesImage[0],
+            another_url: this.filesImage,
+          },
+        ];
+
+        const _id = this.handleData(product);
+
+        this.productService
+          .handleAddAndUpdateProduct(this.productData, _id)
+          .subscribe(
+            () => {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Successful',
+                detail: response.message,
+                life: 3000,
+              });
+              this.getProduct();
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
