@@ -3,11 +3,14 @@ import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import Router from './routes/index.js';
 
 const app = express();
 const port = 8080;
+dotenv.config();
+const DB_HOST = process.env.DB_HOST;
 
 export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
@@ -18,7 +21,7 @@ app.use(express.static('src/public'));
 app.use(cors());
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/angular_group12')
+    .connect(DB_HOST)
     .then(() => console.log('Connect to DB successfully'))
     .catch(() => console.log('Connect to DB fail'));
 

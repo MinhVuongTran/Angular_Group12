@@ -51,7 +51,7 @@
             pButton
             pRipple
             icon="pi pi-pencil"
-            class="p-button-rounded p-button-success"
+            class="p-button-rounded"
             style="margin-right: 12px"
             (click)="editProduct(product)"
           ></button>
@@ -69,18 +69,49 @@
 
   <p-dialog
     [(visible)]="productDialog"
-    [style]="{ width: '450px' }"
+    [style]="{ width: '500px' }"
     header="Product Details"
     [modal]="true"
     styleClass="p-fluid"
+    (onHide)="hideDialog()"
   >
     <ng-template pTemplate="content">
-      <img
-        [src]="product.images[0].base_url"
-        [alt]="product.name"
-        width="300px"
-        class="block m-auto pb-3"
-      />
+      <p-fileUpload
+        #fileUpload
+        id="images"
+        [multiple]="true"
+        accept="image/*"
+        [uploadStyleClass]="'hide-upload-button'"
+        class="text-center"
+        [maxFileSize]="10000000"
+        (onBeforeUpload)="onBeforeUpload($event)"
+      >
+        <ng-template let-file pTemplate="file" class="grid grid-cols-2">
+          <img [src]="file.objectURL" alt="Preview" class="object-cover mb-4" />
+        </ng-template>
+      </p-fileUpload>
+      <p-fieldset
+        *ngIf="filesImage.length > 0"
+        legend="Ảnh sản phẩm"
+        class="mt-2"
+        [toggleable]="true"
+      >
+        <div class="grid grid-cols-2 gap-1">
+          <div *ngFor="let file of filesImage; index as i">
+            <div class="image-preview">
+              <p-image src="{{ file }}" [preview]="false" alt="Image">
+              </p-image>
+              <p-button
+                icon="pi pi-times"
+                class="btn-delete-image"
+                styleClass="p-button-rounded p-button-danger "
+                (click)="onDeleteImage(file, product)"
+              ></p-button>
+            </div>
+          </div>
+        </div>
+      </p-fieldset>
+      <!-- </ng-template> -->
       <div class="field">
         <label for="name">Name</label>
         <input
@@ -91,23 +122,10 @@
           required
           autofocus
         />
-        <small class="p-error" *ngIf="submitted && !product.name"
-          >Name is required.</small
-        >
-      </div>
-      <div class="field">
-        <label for="description">Infors</label>
-        <textarea
-          id="description"
-          pInputTextarea
-          required
-          rows="3"
-          cols="20"
-        ></textarea>
       </div>
 
       <div class="field">
-        <label for="inventoryStatus">Category & subCategory</label>
+        <label for="subCategoryId">Category & subCategory</label>
         <p-dropdown
           [options]="groupedCategories"
           [(ngModel)]="selectedCategory"
@@ -129,6 +147,7 @@
           <p-inputNumber
             id="price"
             [(ngModel)]="product.price"
+            class="w-full"
             [required]="true"
           ></p-inputNumber>
         </div>
@@ -138,8 +157,53 @@
             id="quantity"
             [(ngModel)]="product.quantity"
             [required]="true"
+            class="w-full"
           ></p-inputNumber>
         </div>
+        <div class="field col">
+          <label for="color">Color</label>
+          <input
+            #inputColor
+            type="text"
+            pInputText
+            id="color"
+            [(ngModel)]="product.infos && product.infos[0].color"
+            required
+          />
+        </div>
+        <div class="field col">
+          <label for="material">Material</label>
+          <input
+            #inputMaterial
+            type="text"
+            pInputText
+            id="material"
+            [(ngModel)]="product.infos && product.infos[0].material"
+            required
+          />
+        </div>
+        <div class="field col">
+          <label for="style">Style</label>
+          <input
+            #inputStyle
+            type="text"
+            pInputText
+            id="style"
+            [(ngModel)]="product.infos && product.infos[0].style"
+            required
+          />
+        </div>
+      </div>
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea
+          #inputDesc
+          id="description"
+          [(ngModel)]="product.infos && product.infos[0].desc"
+          class="w-full"
+          rows="5"
+          pInputTextarea
+        ></textarea>
       </div>
     </ng-template>
 
@@ -164,4 +228,20 @@
   </p-dialog>
 
   <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+  <p-dialog
+    *ngIf="submitted"
+    [(visible)]="loadingVisible"
+    [modal]="true"
+    [closable]="false"
+    [draggable]="false"
+    [resizable]="false"
+    [showHeader]="false"
+    [contentStyleClass]="'custom-spinner'"
+  >
+    <p-progressSpinner
+      styleClass="w-4rem h-4rem"
+      strokeWidth="4"
+      animationDuration="1.5s"
+    ></p-progressSpinner>
+  </p-dialog>
 </div>

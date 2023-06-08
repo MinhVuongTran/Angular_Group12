@@ -5,7 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
+import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
@@ -27,8 +29,14 @@ import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ToastModule } from 'primeng/toast';
-import { AppComponent } from './app.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { OverlayModule } from 'primeng/overlay';
+import { TreeTableModule } from 'primeng/treetable';
+import { ImageModule } from 'primeng/image';
+import { FieldsetModule } from 'primeng/fieldset';
 
+import { AppComponent } from './app.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { FooterAdminComponent } from './components/footer-admin/footer-admin.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -50,6 +58,7 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ProductsComponent } from './pages/products/products.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SliderService } from './services/slider/slider.service';
+import { CategoryAdminComponent } from './pages/admin/category-admin/category-admin.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +83,7 @@ import { SliderService } from './services/slider/slider.service';
     FooterAdminComponent,
     SidebarAdminComponent,
     MenuAdminComponent,
+    CategoryAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,10 +113,16 @@ import { SliderService } from './services/slider/slider.service';
     ReactiveFormsModule,
     ConfirmDialogModule,
     CommonModule,
+    FileUploadModule,
+    ProgressSpinnerModule,
+    OverlayModule,
+    TreeTableModule,
+    ImageModule,
+    FieldsetModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [SliderService, DialogService],
+  providers: [SliderService, DialogService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

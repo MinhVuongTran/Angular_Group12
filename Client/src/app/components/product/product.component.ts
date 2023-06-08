@@ -29,7 +29,6 @@ export class ProductComponent implements OnInit {
       this.productService.getProducts().subscribe(
         ({ data }) => {
           this.products = data;
-          console.log(this.products);
 
           this.images = data.map((item: any) => item.images);
         },
