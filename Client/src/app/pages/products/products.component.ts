@@ -43,7 +43,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.paramMap.subscribe((params: ParamMap) => {
       // Lấy giá trị slug từ URL
       this.categorySlug = params.get('subCategorySlug');
-      console.log(this.categorySlug);
 
       // Gọi phương thức cập nhật danh sách sản phẩm dựa trên categorySlug
       this.updateProductList(this.categorySlug);

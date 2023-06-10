@@ -5,6 +5,7 @@ const { Schema } = mongoose;
 const imageModel = new Schema({
     base_url: {
         type: String,
+        required: true,
     },
     another_url: {
         type: Schema.Types.Array,
@@ -14,15 +15,19 @@ const imageModel = new Schema({
 const infoModel = new Schema({
     color: {
         type: String,
+        required: true,
     },
     material: {
         type: String,
+        required: true,
     },
     style: {
         type: String,
+        required: true,
     },
     desc: {
         type: String,
+        required: true,
     },
 });
 
@@ -34,6 +39,11 @@ const productModel = new Schema(
         },
         price: {
             type: Number,
+            required: true,
+        },
+        quantity: {
+            type: Number,
+            required: true,
         },
         images: [imageModel],
         infos: [infoModel],

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ProductService } from 'src/app/services/product/product.service';
@@ -14,8 +14,15 @@ export class ProductDetailComponent {
   constructor(
     private route: ActivatedRoute,
     public dialogService: DialogService,
-    private productService: ProductService
-  ) {}
+    private productService: ProductService,
+    private router: Router
+  ) {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.ngOnInit();
+      }
+    });
+  }
 
   product: any = {};
   similar_products: Product[] = [];

@@ -5,6 +5,7 @@ import productModel from '../models/product.js';
 const productValidate = Joi.object({
     name: Joi.string().required(),
     price: Joi.number(),
+    quantity: Joi.number(),
     description: Joi.string(),
     images: Joi.array().min(1),
     infos: Joi.array().min(1),
@@ -14,16 +15,19 @@ const productValidate = Joi.object({
 
 const get = async (req, res) => {
     try {
-        const data = await productModel.find().populate([
-            {
-                path: 'categoryId',
-                select: ['name', 'slug'],
-            },
-            {
-                path: 'subCategoryId',
-                select: ['name', 'slug'],
-            },
-        ]);
+        const data = await productModel
+            .find()
+            .select('-createdAt')
+            .populate([
+                {
+                    path: 'categoryId',
+                    select: ['name', 'slug'],
+                },
+                {
+                    path: 'subCategoryId',
+                    select: ['name', 'slug'],
+                },
+            ]);
         res.send({
             data,
         });

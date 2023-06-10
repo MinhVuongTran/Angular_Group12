@@ -3,19 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { ProductComponent } from './pages/admin/product/product.component';
+import { ProductAdminComponent } from './pages/admin/product-admin/product-admin.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/notFound/notFound.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { AuthGuard } from './auth.guard';
+import { CategoryAdminComponent } from './pages/admin/category-admin/category-admin.component';
 
 const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: '',
         redirectTo: 'dashboard',
@@ -27,13 +31,18 @@ const routes: Routes = [
       },
       {
         path: 'product',
-        component: ProductComponent,
+        component: ProductAdminComponent,
+      },
+      {
+        path: 'category',
+        component: CategoryAdminComponent,
       },
       {
         path: '**',
         component: NotFoundComponent,
       },
     ],
+    
   },
   {
     path: '',
@@ -58,6 +67,7 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        // canActivate: [AuthGuard],
       },
       {
         path: 'register',
