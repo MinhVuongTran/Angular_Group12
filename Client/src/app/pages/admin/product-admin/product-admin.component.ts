@@ -209,6 +209,8 @@ export class ProductAdminComponent implements OnInit {
 
   saveProduct(product: Product) {
     this.submitted = true;
+    console.log(this.isUpdate);
+    console.log(this.fileUpload.files);
 
     if (this.isUpdate) {
       if (this.fileUpload.files && this.fileUpload.files.length > 0) {
@@ -243,14 +245,36 @@ export class ProductAdminComponent implements OnInit {
         this.handleAddAndUpdateProduct(this.productData, _id);
       }
     } else {
-      this.submitted = false;
-      this.loadingVisible = false;
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Choose image',
-        life: 3000,
-      });
+      if (this.fileUpload.files && this.fileUpload.files.length > 0) {
+        this.loadingVisible = true;
+        this.onBeforeUpload()
+          .then((response) => response.urls)
+          .then((urls: any[]) => {
+            // Handle urls upload images
+
+            const base_url = urls[0];
+            this.images = [
+              {
+                base_url: base_url.url,
+                another_url: urls.map((url) => url.url),
+              },
+            ];
+            this.images[0].another_url.push(...this.filesImage);
+          })
+          .then(() => {
+            const _id = this.handleData(product);
+            this.handleAddAndUpdateProduct(this.productData, _id);
+          });
+      } else {
+        this.submitted = false;
+        this.loadingVisible = false;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Choose image',
+          life: 3000,
+        });
+      }
     }
   }
 
