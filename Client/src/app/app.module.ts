@@ -35,6 +35,8 @@ import { OverlayModule } from 'primeng/overlay';
 import { TreeTableModule } from 'primeng/treetable';
 import { ImageModule } from 'primeng/image';
 import { FieldsetModule } from 'primeng/fieldset';
+import { ChartModule } from 'primeng/chart';
+import { KnobModule } from 'primeng/knob';
 
 import { AppComponent } from './app.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -119,6 +121,8 @@ import { CategoryAdminComponent } from './pages/admin/category-admin/category-ad
     TreeTableModule,
     ImageModule,
     FieldsetModule,
+    ChartModule,
+    KnobModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
