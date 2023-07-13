@@ -18,36 +18,14 @@ import { CartService } from 'src/app/services/cart/cart.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit, OnDestroy {
-  private routeSub!: Subscription;
-  private categorySlug!: string | null;
-  products: Product[] = [];
+export class ProductsComponent implements OnInit {
   posts: Post[] = [];
   pathUrl = '';
-  images: any;
   productItems: MenuItem[] = [];
-  public totalItems: number = 0;
-  addToCart(product: any): void {
-    this.cartService.addToCart(product);
-    this.totalItems = this.cartService.updateCartTotal();
-  }
 
-  constructor(
-    private productService: ProductService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private cartService: CartService
-  ) {}
+  constructor() {}
 
   ngOnInit() {
-    this.routeSub = this.route.paramMap.subscribe((params: ParamMap) => {
-      // Lấy giá trị slug từ URL
-      this.categorySlug = params.get('subCategorySlug');
-
-      // Gọi phương thức cập nhật danh sách sản phẩm dựa trên categorySlug
-      this.updateProductList(this.categorySlug);
-    });
-
     this.productItems = [
       {
         label: 'Bán chạy nhất',
@@ -72,7 +50,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         // routerLink: routerLink,
         routerLink: this.pathUrl,
         queryParams: { sort: 'price_asc' },
-
       },
     ];
 
@@ -98,26 +75,5 @@ export class ProductsComponent implements OnInit, OnDestroy {
         imgUrl: 'assets/20230304_JEJcTXpYnx8vqYyg.jpeg',
       },
     ];
-  }
-  ngOnDestroy() {
-    this.routeSub.unsubscribe();
-  }
-
-  updateProductList(categorySlug: string | null) {
-    this.productService.getProducts().subscribe(
-      ({ data }) => {
-        if (categorySlug !== null) {
-          this.products = data.filter(
-            (item: any) => item.subCategoryId.slug === categorySlug
-          );
-        } else {
-          this.products = data;
-        }
-
-        this.images = data.map((item: any) => item.images);
-        console.log(this.products);
-      },
-      (error) => console.log(error.message)
-    );
   }
 }

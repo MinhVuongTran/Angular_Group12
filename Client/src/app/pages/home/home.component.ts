@@ -13,6 +13,9 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   images: any;
   posts: Post[] = [];
+  currentPage: number = 1;
+  currentProducts: Product[] = [];
+  rows: number = 4;
 
   constructor(
     private productService: ProductService,
@@ -26,14 +29,28 @@ export class HomeComponent implements OnInit {
     this.totalItems = this.cartService.updateCartTotal();
   }
 
-  ngOnInit() {
+  onPageChange(event: any) {
+    this.currentPage = event.page + 1;
+    this.rows = event.rows;
 
+    const startIndex = this.currentPage * this.rows - this.rows;
+
+    this.currentProducts = this.products.slice(
+      startIndex,
+      startIndex + this.rows
+    );
+    this.images = this.currentProducts.map((item: any) => item.images);
+  }
+
+  ngOnInit() {
     this.productService.getProducts().subscribe(
       ({ data }) => {
         this.products = data;
-        console.log(this.products);
-
-        this.images = data.map((item: any) => item.images);
+        this.currentProducts = this.products.slice(
+          this.currentPage - 1,
+          this.rows
+        );
+        this.images = this.currentProducts.map((item: any) => item.images);
       },
       (error) => console.log(error.message)
     );

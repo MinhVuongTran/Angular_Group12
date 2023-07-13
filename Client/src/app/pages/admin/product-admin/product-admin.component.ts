@@ -133,6 +133,8 @@ export class ProductAdminComponent implements OnInit {
     for (let file of fileList) {
       convertFiles.push(file);
     }
+    console.log(convertFiles);
+
     try {
       const response = this.uploadImageService
         .uploadImage(convertFiles)

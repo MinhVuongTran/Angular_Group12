@@ -1,0 +1,28 @@
+<div *ngIf="products && products.length; else noProducts">
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 lg:grid-cols-4"
+  >
+    <div
+      class="card flex justify-content-center"
+      *ngFor="let product of currentProducts; index as i"
+    >
+      <app-product [product]="product" [base_url]="images[i][0]?.base_url" />
+    </div>
+  </div>
+  <p-paginator
+    [rows]="rows"
+    [totalRecords]="products.length"
+    [pageLinkSize]="3"
+    (onPageChange)="onPageChange($event)"
+    [first]="(currentPage - 1) * rows"
+    [rowsPerPageOptions]="[4, 8, 12, 16]"
+    class="pagination"
+  ></p-paginator>
+</div>
+<ng-template #noProducts>
+  <h2
+    class="text-[#eb5757] font-semibold text-5xl min-h-[30vh] flex justify-center items-center"
+  >
+    No product available
+  </h2>
+</ng-template>

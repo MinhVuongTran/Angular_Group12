@@ -5,38 +5,39 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
-import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
+import { ChartModule } from 'primeng/chart';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogService } from 'primeng/dynamicdialog';
+import { FieldsetModule } from 'primeng/fieldset';
+import { FileUploadModule } from 'primeng/fileupload';
 import { GalleriaModule } from 'primeng/galleria';
+import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { KnobModule } from 'primeng/knob';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
+import { OverlayModule } from 'primeng/overlay';
+import { PaginatorModule } from 'primeng/paginator';
 import { PanelModule } from 'primeng/panel';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ToastModule } from 'primeng/toast';
-import { FileUploadModule } from 'primeng/fileupload';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { OverlayModule } from 'primeng/overlay';
 import { TreeTableModule } from 'primeng/treetable';
-import { ImageModule } from 'primeng/image';
-import { FieldsetModule } from 'primeng/fieldset';
-import { ChartModule } from 'primeng/chart';
-import { KnobModule } from 'primeng/knob';
 
 import { AppComponent } from './app.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -47,10 +48,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { AdminLayoutComponent } from './components/layouts/adminLayout/adminLayout.component';
 import { SiteLayoutComponent } from './components/layouts/siteLayout/siteLayout.component';
 import { MenuAdminComponent } from './components/menu-admin/menu-admin.component';
-import { ProductComponent } from './components/product/product.component';
 import { ReProCateComponent } from './components/reProCate/reProCate.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { CategoryAdminComponent } from './pages/admin/category-admin/category-admin.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ProductAdminComponent } from './pages/admin/product-admin/product-admin.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -60,7 +61,8 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { ProductsComponent } from './pages/products/products.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SliderService } from './services/slider/slider.service';
-import { CategoryAdminComponent } from './pages/admin/category-admin/category-admin.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,6 @@ import { CategoryAdminComponent } from './pages/admin/category-admin/category-ad
     NotFoundComponent,
     SliderComponent,
     ProductsComponent,
-    ProductComponent,
     ProductDetailComponent,
     SiteLayoutComponent,
     AdminLayoutComponent,
@@ -86,6 +87,8 @@ import { CategoryAdminComponent } from './pages/admin/category-admin/category-ad
     SidebarAdminComponent,
     MenuAdminComponent,
     CategoryAdminComponent,
+    ProductComponent,
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,6 +126,7 @@ import { CategoryAdminComponent } from './pages/admin/category-admin/category-ad
     FieldsetModule,
     ChartModule,
     KnobModule,
+    PaginatorModule,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
