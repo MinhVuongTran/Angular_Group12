@@ -2,9 +2,9 @@
   <!-- Thông tin sản phẩm -->
   <div class="Card">
     <div class="flex flex-col gap-y-16" [(ngModel)]="product">
-      <div class="flex gap-x-6 items-center">
+      <div class="flex gap-x-6 items-center flex-col lg:flex-row">
         <!--  Giao diện cột trái -->
-        <div class="w-2/5">
+        <div class="w-full lg:w-2/5">
           <div class="p-4">
             <p-carousel
               [value]="product.images[0]?.another_url"
@@ -37,7 +37,7 @@
         <!-- End Giao diện cột trái -->
         <!-- ----------------------------- -->
         <!-- Giao diện cột phải -->
-        <div class="w-3/5">
+        <div class="w-full lg:w-3/5 p-4">
           <div class="py-2">
             <button class="px-4 py-1 bg-[#f2994a66] text-[#f2994a] rounded-xl">
               #Bán chạy
@@ -105,7 +105,9 @@
               THÊM VÀO GIỎ HÀNG
             </button>
           </div>
-          <div class="mt-2 border w-4/5 p-2 shadow-md flex justify-between">
+          <div
+            class="mt-2 border sm:w-4/5 p-2 shadow-md flex justify-between w-full"
+          >
             <div class="font-medium flex items-center gap-x-4">
               <i class="pi pi-calendar-plus"></i>
               <p>90 ngày bảo hành</p>
@@ -146,7 +148,9 @@
       <!-- Sản phẩm tương tự -->
       <div class="">
         <p-card header="SẢN PHẨM TƯƠNG TỰ">
-          <div class="grid gap-4 grid-cols-4">
+          <div
+            class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          >
             <div
               class="card flex justify-content-center"
               *ngFor="let similar_product of similar_products; index as i"
